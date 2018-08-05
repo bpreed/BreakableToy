@@ -3,6 +3,10 @@
   /* background-image: url("/assets/triangle_background2.jpg"); */
 }
 
+.top-bar .title-area {
+  margin-left: 30%;
+}
+
 .page-header {
   text-align: center;
 }
@@ -32,6 +36,14 @@
     line-height: 3.5rem;
   }
 }
+
+.top-bar-section {
+  margin-left: 60%;
+}
+
+/* .top-bar-section ul {
+  margin-left: 80%;
+} */
 
 .top-bar-section ul li {
   background: #0269EF;
