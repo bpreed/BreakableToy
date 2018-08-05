@@ -7,7 +7,6 @@ class EventSerializer < ActiveModel::Serializer
 
   def types
     types = []
-    # binding.pry
     object.event_types.each do |type|
       types << Type.find(type.type_id).name
     end

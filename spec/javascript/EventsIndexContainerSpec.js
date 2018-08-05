@@ -38,7 +38,6 @@ describe('EventsIndexContainerSpec', () => {
   describe('listing', () => {
     it('renders expected html items', () => {
       expect(wrapper.find('h2')).toBePresent()
-      // expect(wrapper.find('#event-header')).toBePresent()
     })
 
     it('renders each trail returned from api call', (done) => {

@@ -9,7 +9,6 @@ class EventTile extends Component {
       addressDiv = <div className="event-detail" id="event-address">{this.props.address}</div>
     }
 
-
     let event_date = new Date(this.props.date).toLocaleDateString('en-US', {
       day: 'numeric',
       month: 'long',
