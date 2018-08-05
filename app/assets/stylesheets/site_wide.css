@@ -1,0 +1,44 @@
+#background-image {
+  background: #f6fdfd;
+  /* background-image: url("/assets/triangle_background2.jpg"); */
+}
+
+.page-header {
+  text-align: center;
+}
+
+.top-bar {
+  background: #0269EF;
+  height: 3.5rem;
+}
+
+.top-bar .name {
+  height: 3.5rem;
+}
+
+.top-bar a {
+  line-height: 3.5rem;
+}
+
+.top-bar .name h1 {
+  font-size: 2rem;
+  height: 3.5rem;
+}
+
+@media only screen and (min-width: 40.0625em) {
+  .top-bar-section li:not(.has-form) a:not(.button){
+    background: #0269EF;
+    border-radius: 10px;
+    line-height: 3.5rem;
+  }
+}
+
+.top-bar-section ul li {
+  background: #0269EF;
+  height: 3.5rem;
+}
+
+.top-bar-section ul li > a {
+  font-size: 1.75rem;
+  height: 3.5rem;
+}

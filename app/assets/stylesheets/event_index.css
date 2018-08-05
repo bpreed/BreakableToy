@@ -1,0 +1,39 @@
+.events-tiles {
+  max-width: 45rem;
+}
+
+.event-tile {
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  margin: 1rem;
+  background: #fdf6f6;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.event-detail {
+  font-size: 1.25rem;
+}
+
+.event-date {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.event-name {
+  font-size: 1.75rem;
+}
+
+.event-header {
+  -ms-display: flexbox;
+  display: flex;
+}
+
+.event-types {
+  font-size: 1rem;
+}
