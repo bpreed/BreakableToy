@@ -31,7 +31,6 @@ class EventsIndexContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   render() {
     let events = this.state.events.map((bike_event) => {
       return (

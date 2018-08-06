@@ -21,7 +21,7 @@ describe('EventsIndexContainerSpec', () => {
         date: "2018-08-19T04:15:00.000Z",
         reg_open: "2018-06-02T04:01:00.000Z",
         reg_close: "2018-08-19T03:59:00.000Z",
-        types: [],
+        types: ["Road Race"],
         bike_reg_id: 123,
         id: 2
       }
@@ -38,14 +38,13 @@ describe('EventsIndexContainerSpec', () => {
   describe('listing', () => {
     it('renders expected html items', () => {
       expect(wrapper.find('h2')).toBePresent()
-      expect(wrapper.find('#event-header')).toBePresent()
     })
 
     it('renders each trail returned from api call', (done) => {
       setTimeout(() => {
         expect(wrapper.find('.event-name').text()).toEqual(events[0].name)
         expect(wrapper.find('.event-date').text()).toEqual("August 19, 2018")
-        expect(wrapper.find('.event-reg-open').text()).toEqual("Registration opens: 6/2/2018, 12:01 AM")
+        expect(wrapper.find('.event-types').text()).toEqual("Road Race")
         done()
       }, 0)
     })
