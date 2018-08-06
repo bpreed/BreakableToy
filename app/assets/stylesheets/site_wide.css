@@ -1,6 +1,5 @@
 #background-image {
   background: #f6fdfd;
-  /* background-image: url("/assets/triangle_background2.jpg"); */
 }
 
 .top-bar .title-area {
@@ -40,10 +39,6 @@
 .top-bar-section {
   margin-left: 65%;
 }
-
-/* .top-bar-section ul {
-  margin-left: 80%;
-} */
 
 .top-bar-section ul li {
   background: #0269EF;
