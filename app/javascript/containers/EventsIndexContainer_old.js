@@ -47,31 +47,26 @@ class EventsIndexContainer extends Component {
   }
 
   render() {
-
-    let events = this.state.events.filter(function(bikeEvent) {
-      let date_string = bikeEvent["EventDate"].substring(6, 19)
-      let date = new Date(parseInt(date_string))
-      if (bikeEvent["EventDate"] == null || date < new Date()) {
-        return false;
-      }
-      return true;
-    }).map((bike_event) => {
+    let events = this.state.events.map((bike_event) => {
       return (
         <EventTile
-          key={bike_event.EventId}
-          id={bike_event.EventId}
-          name={bike_event.EventName}
-          city={bike_event.EventCity}
-          state={bike_event.EventState}
-          address={bike_event.EventAddress}
-          startDate={bike_event.EventDate}
-          endDate={bike_event.EventEndDate}
-          url={bike_event.EventUrl}
-          latitude={bike_event.Latitude}
-          longitude={bike_event.Longitude}
-          regOpen={bike_event.RegOpenDate}
-          regClose={bike_event.RegCloseDate}
-          eventTypes={bike_event.EventTypes}
+          key={bike_event.id}
+          id={bike_event.id}
+          name={bike_event.name}
+          city={bike_event.city}
+          state={bike_event.state}
+          name={bike_event.name}
+          address={bike_event.address}
+          city={bike_event.city}
+          state={bike_event.state}
+          date={bike_event.date}
+          url={bike_event.url}
+          latitude={bike_event.latitude}
+          longitude={bike_event.longitude}
+          regOpen={bike_event.reg_open}
+          regClose={bike_event.reg_close}
+          eventId={bike_event.bike_reg_id}
+          eventTypes={bike_event.types}
         />
       )
     })
@@ -81,7 +76,7 @@ class EventsIndexContainer extends Component {
       <EventSearchTile
       handlerFunction={this.handleChange}
       handleSearch={this.handleSearch}/>
-        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events Based On Your Search</h2>
+        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events Near Boston, MA</h2>
         <div className="large-12 medium-12 small-12">
           <div className="row events-tiles">
             {events}
