@@ -11,18 +11,18 @@ describe('EventsIndexContainerSpec', () => {
   beforeEach(() => {
     events = [
       {
-        name: "Test Event",
-        address: "777 Washington St.",
-        city: "Waltham",
-        state: "MA",
-        url: "https://www.google.com",
-        latitude: "1",
-        longitude: "2",
-        date: "2018-08-19T04:15:00.000Z",
-        reg_open: "2018-06-02T04:01:00.000Z",
-        reg_close: "2018-08-19T03:59:00.000Z",
-        types: ["Road Race"],
-        bike_reg_id: 123,
+        EventName: "Test Event",
+        EventAddress: "777 Washington St.",
+        EventCity: "Waltham",
+        EventState: "MA",
+        EventUrl: "https://www.google.com",
+        Latitude: "1",
+        Longitude: "2",
+        EventDate: "2018-08-19T04:15:00.000Z",
+        RegOpenDate: "2018-06-02T04:01:00.000Z",
+        RegCloseDate: "2018-08-19T03:59:00.000Z",
+        EventTypes: ["Road Race"],
+        EventId: 123,
         id: 2
       }
     ]

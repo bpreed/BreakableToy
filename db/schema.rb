@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_05_155509) do
+ActiveRecord::Schema.define(version: 2018_08_06_191953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_08_05_155509) do
     t.datetime "reg_open", null: false
     t.datetime "reg_close", null: false
     t.integer "bike_reg_id", null: false
+    t.text "type", default: [], array: true
   end
 
   create_table "types", force: :cascade do |t|

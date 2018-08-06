@@ -81,7 +81,8 @@ class EventSearchTile extends Component {
       states: [],
       region: '',
       name: '',
-      types: []
+      types: [],
+      year: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleMultiSelect = this.handleMultiSelect.bind(this)
@@ -105,6 +106,7 @@ class EventSearchTile extends Component {
       region: this.state.region,
       name: this.state.name,
       types: this.state.types,
+      year: this.state.year
     }
     fetch('/api/v1/search/events', {
       credentials: 'same-origin',
@@ -130,6 +132,17 @@ class EventSearchTile extends Component {
 
 
   render() {
+    let yearSelect
+    yearSelect = <div>
+     <select name='year' value={this.state.year || ''} onChange={this.handleChange}>
+       <option value='default'></option>
+       <option value='2017'>2017</option>
+       <option value='2018'>2018</option>
+       <option value='2019'>2019</option>
+       <option value='2020'>2020</option>
+     </select>
+   </div>
+
     let regionSelect
     regionSelect = <div>
      <select name='region' value={this.state.region || ''} onChange={this.handleChange}>
@@ -165,6 +178,10 @@ class EventSearchTile extends Component {
             <MultiSelectTile
             optionsList={TYPES}
             onSelect={this.handleMultiSelect}/>
+          </span>
+          <span className="region-select">
+            Select year (all future events if blank):
+            {yearSelect}
           </span>
           <span className="name-search">
             Event Name:
