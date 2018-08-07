@@ -51,8 +51,8 @@ describe('EventsIndexContainerSpec', () => {
     })
 
     it('renders each event returned from api call', (done) => {
+      wrapper.find('#search-button').simulate('submit')
       setTimeout(() => {
-        debugger
         expect(wrapper.find('.event-name').text()).toEqual(events[0].EventName)
         expect(wrapper.find('.event-date').text()).toEqual("August 25, 2018")
         expect(wrapper.find('.event-types').text()).toEqual("Recreational")

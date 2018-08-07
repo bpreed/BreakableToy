@@ -38,7 +38,6 @@ class EventsIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      debugger
       this.setState({ events: body})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
