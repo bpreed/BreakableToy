@@ -24,7 +24,6 @@
 
 .search-top-row {
   display: inline-flex;
-  /* margin: auto; */
 }
 
 .search-second-row {
@@ -68,16 +67,3 @@ select {
   margin-right: 6rem;
   display: flex;
 }
-/*
-#search-title {
-  margin-left: 1rem;
-  margin-top: 2rem;
-}
-
-#search-instructions {
-  margin-left: 1rem;
-}
-
-#search-button {
-  margin-bottom: 2rem;
-} */

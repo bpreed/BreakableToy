@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-  # serialize :type, Array
 
   validates :name, presence: true
   validates :city, presence: true
