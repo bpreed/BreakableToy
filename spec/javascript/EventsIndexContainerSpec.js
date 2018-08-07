@@ -1,8 +1,9 @@
-import EventsIndexContainer from '../../app/javascript/containers/EventsIndexContainer';
-import EventTile from '../../app/javascript/components/EventTile';
 import { mount } from 'enzyme';
 import React from 'react';
 import fetchMock from 'fetch-mock';
+import EventsIndexContainer from '../../app/javascript/containers/EventsIndexContainer';
+import EventTile from '../../app/javascript/components/EventTile';
+import EventSearchTile from '../../app/javascript/components/EventSearchTile'
 
 describe('EventsIndexContainerSpec', () => {
   let wrapper;
@@ -11,25 +12,34 @@ describe('EventsIndexContainerSpec', () => {
   beforeEach(() => {
     events = [
       {
-        EventName: "Test Event",
-        EventAddress: "777 Washington St.",
-        EventCity: "Waltham",
-        EventState: "MA",
-        EventUrl: "https://www.google.com",
-        Latitude: "1",
-        Longitude: "2",
-        EventDate: "2018-08-19T04:15:00.000Z",
-        RegOpenDate: "2018-06-02T04:01:00.000Z",
-        RegCloseDate: "2018-08-19T03:59:00.000Z",
-        EventTypes: ["Road Race"],
-        EventId: 123,
-        id: 2
+        Categories: [],
+        Distance: 0,
+        EventAddress: "940 Main street",
+        EventCity: "Gardendale",
+        EventDate: "/Date(1535169600000-0400)/",
+        EventEndDate: "/Date(1535169600000-0400)/",
+        EventId: 36872,
+        EventName: "North Jefferson Century",
+        EventNotes: null,
+        EventPermalink: "http://www.BikeReg.com/36872",
+        EventState: "AL",
+        EventTypes: ["Recreational"],
+        EventUrl: "http://www.BikeReg.com/north-jefferson-century",
+        EventWebsite: "http://www.northjeffersoncentury.com",
+        EventZip: "35071",
+        Latitude: 33.649741,
+        Longitude: -86.812177,
+        Permit: "",
+        PledgeRegUrl: null,
+        PresentedBy: "Hamburger Heaven of Gardendale",
+        RegCloseDate: "/Date(1534802400000-0400)/",
+        RegOpenDate: "/Date(1512281700000-0500)/"
       }
     ]
-    fetchMock.get('/api/v1/events', {
+    fetchMock.post('/api/v1/search/events', {
       status: 200,
       body: events
-    })
+    });
     wrapper = mount(<EventsIndexContainer />)
   });
 
@@ -40,11 +50,12 @@ describe('EventsIndexContainerSpec', () => {
       expect(wrapper.find('h2')).toBePresent()
     })
 
-    it('renders each trail returned from api call', (done) => {
+    it('renders each event returned from api call', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('.event-name').text()).toEqual(events[0].name)
-        expect(wrapper.find('.event-date').text()).toEqual("August 19, 2018")
-        expect(wrapper.find('.event-types').text()).toEqual("Road Race")
+        debugger
+        expect(wrapper.find('.event-name').text()).toEqual(events[0].EventName)
+        expect(wrapper.find('.event-date').text()).toEqual("August 25, 2018")
+        expect(wrapper.find('.event-types').text()).toEqual("Recreational")
         done()
       }, 0)
     })

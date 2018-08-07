@@ -13,6 +13,19 @@ class BikeRegResult
     self.class.get("/api/search", @options)
   end
 
+  def upcoming_check(events)
+    count = 0
+    events["MatchingEvents"].each do |event|
+      next if event["EventDate"] == nil
+      date_trim = event["EventDate"][6...19]
+      date = Time.at(date_trim.to_i/1000).to_s
+      if date > Time.now
+        count += 1
+      end
+    end
+    count
+  end
+
   def create_events(events)
     events["MatchingEvents"].each do |event|
       # Skip events without dates (unlikely)
