@@ -15,5 +15,6 @@
  *= require_self
  *= require site_wide.css
  *= require event_index.css
+ *= require event_index_search.css
 
  */

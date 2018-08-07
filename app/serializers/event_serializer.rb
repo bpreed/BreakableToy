@@ -1,16 +1,56 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :bike_reg_id, :BTId, :name, :address, :city, :state, :date, :url, :latitude, :longitude, :reg_open, :reg_close, :types
+  attributes :EventId, :BTId, :EventName, :EventAddress, :EventCity, :EventState, :EventDate, :EventUrl, :latitude, :longitude, :RegOpenDate, :RegCloseDate, :EventTypes
 
   def BTId
     object.id
   end
 
-  def types
-    types = []
-    object.event_types.each do |type|
-      types << Type.find(type.type_id).name
-    end
-    types
+  def EventId
+    object.bike_reg_id
+  end
+
+  def EventName
+    object.name
+  end
+
+  def EventAddress
+    object.address
+  end
+
+  def EventCity
+    object.city
+  end
+
+  def EventState
+    object.state
+  end
+
+  def EventDate
+    object.date
+  end
+
+  def EventUrl
+    object.url
+  end
+
+  def Latitude
+    object.latitude
+  end
+
+  def Longitude
+    object.longitude
+  end
+
+  def RegOpenDate
+    object.reg_open
+  end
+
+  def RegCloseDate
+    object.reg_close
+  end
+
+  def EventTypes
+    object.types
   end
 
 end

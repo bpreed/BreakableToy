@@ -38,3 +38,9 @@
 .event-types {
   font-size: 1rem;
 }
+
+.no-results {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 2rem;
+}
