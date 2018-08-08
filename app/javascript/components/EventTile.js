@@ -45,15 +45,36 @@ class EventTile extends Component {
 
     let types = this.props.eventTypes.join(', ')
 
+
+    let favoriteButton
+    if(this.props.activeUser == true) {
+      favoriteButton = <div className="event-detail favorite-button small-3 large-3">Favorite me!</div>
+    }
+
     return (
       <div className="small-12 event-tile">
-        <div className="event-detail event-types">{types}</div>
-        <span className="event-header"><div className="event-detail event-name small-9 large-9">{this.props.name}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div></span>
+        <span className="event-header">
+          <div className="event-detail event-types event-name small-9 large-9">
+            {types}
+          </div>
+          {favoriteButton}
+        </span>
+        <span className="event-header">
+          <div className="event-detail event-name small-9 large-9">{this.props.name}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div>
+        </span>
         {addressDiv}
-        <div className="event-detail event-location">{this.props.city}, {this.props.state}</div>
-        <div className="event-detail event-url"><a href={`${this.props.url}`}>Event Registration</a></div>
-        <div className="event-detail event-reg-open">Registration opens: {regOpen}</div>
-        <div className="event-detail event-reg-close">Registration closes: {regClose}</div>
+        <div className="event-detail event-location">
+          {this.props.city}, {this.props.state}
+        </div>
+        <div className="event-detail event-url"><a href={`${this.props.url}`}>
+          Event Registration</a>
+        </div>
+        <div className="event-detail event-reg-open">
+          Registration opens: {regOpen}
+        </div>
+        <div className="event-detail event-reg-close">
+          Registration closes: {regClose}
+        </div>
       </div>
     )
   }

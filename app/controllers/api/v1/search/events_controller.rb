@@ -5,7 +5,8 @@ class Api::V1::Search::EventsController < ApplicationController
     search_string = BikeRegResult.new(states: params[:states], region: params[:region], name: params[:name], eventtype: params[:types], year: params[:year])
     events = search_string.matching_events
     event_results = events["MatchingEvents"]
-    render json: event_results
+    authenticated_user = user_signed_in?
+    render json: { events: event_results, authenticated_user: authenticated_user }
   end
 
 end

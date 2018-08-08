@@ -8,7 +8,8 @@ class EventsIndexContainer extends Component {
     this.state = {
       events: [],
       regionField: '',
-      statesField: ''
+      statesField: '',
+      activeUser: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -25,7 +26,7 @@ class EventsIndexContainer extends Component {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),
-      headers: { 'Content-Type': 'application/json'}
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}
     })
     .then(response => {
       if (response.ok) {
@@ -38,7 +39,7 @@ class EventsIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ events: body})
+      this.setState({ events: body.events, activeUser: body.authenticated_user })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -76,6 +77,7 @@ class EventsIndexContainer extends Component {
             regOpen={bike_event.RegOpenDate}
             regClose={bike_event.RegCloseDate}
             eventTypes={bike_event.EventTypes}
+            activeUser={this.state.activeUser}
           />
         )
       })

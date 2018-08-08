@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   validates :reg_close, presence: true
   validates :bike_reg_id, presence: true
 
+  has_many :favorites
   has_many :event_types
 
 end
