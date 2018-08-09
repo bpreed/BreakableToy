@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :events, only: [:index]
+      resources :events, only: [:index, :create]
+      resources :favorites, only: [:create]
       namespace :search do
         resources :events, only: [:create]
       end

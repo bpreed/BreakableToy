@@ -9,19 +9,23 @@ class EventsIndexContainer extends Component {
       events: [],
       regionField: '',
       statesField: '',
-      activeUser: false
+      activeUser: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    // this.handleFavorite = this.handleFavorite.bind(this)
   }
 
-  handleChange(event){
+  // Sets state based on form fields
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSearch(formPayload){
+  // Fetches local API - renders PORO BikeRegResult to set up search params & initiates outside API call
+  // returns Events from search result and boolean for active user
+  handleSearch(formPayload) {
     fetch('/api/v1/search/events', {
       credentials: 'same-origin',
       method: 'POST',
@@ -44,12 +48,14 @@ class EventsIndexContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  componentDidMount() {
-
-  }
+  // handleFavorite(event) {
+  //
+  // }
 
   render() {
     let events;
+    // Displays 'no results' message if no events returned from Fetch
+    // Otherwise maps through events, filtering out past events
     if (this.state.events.length == 0) {
       events = <div className="no-results">No current search results</div>
     } else {
@@ -64,20 +70,8 @@ class EventsIndexContainer extends Component {
         return (
           <EventTile
             key={bike_event.EventId}
-            id={bike_event.EventId}
-            name={bike_event.EventName}
-            city={bike_event.EventCity}
-            state={bike_event.EventState}
-            address={bike_event.EventAddress}
-            startDate={bike_event.EventDate}
-            endDate={bike_event.EventEndDate}
-            url={bike_event.EventUrl}
-            latitude={bike_event.Latitude}
-            longitude={bike_event.Longitude}
-            regOpen={bike_event.RegOpenDate}
-            regClose={bike_event.RegCloseDate}
-            eventTypes={bike_event.EventTypes}
             activeUser={this.state.activeUser}
+            eventInfo={bike_event}
           />
         )
       })
