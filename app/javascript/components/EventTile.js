@@ -9,42 +9,17 @@ class EventTile extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   let formPayload = {
-  //     activeUser: this.props.activeUser,
-  //     eventInfo: this.props.eventInfo
-  //   }
-  //   fetch('/api/v1/events', {
-  //     method: 'POST',
-  //     credentials: 'same-origin',
-  //     body: JSON.stringify(formPayload),
-  //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}
-  //   })
-  //   .then(response => {
-  //       if (response.ok) {
-  //         return response;
-  //       } else {
-  //         let errorMessage = `${response.status} (${response.statusText})`,
-  //             error = new Error(errorMessage);
-  //         throw(error);
-  //       }
-  //     })
-  //   .then(response => response.json())
-  //   .then(body => {
-  //     if (body != null) {
-  //       this.setState({ favoriteRecord: body })
-  //     }
-  //   })
-  //    .catch(error => console.error(`Error in fetch: ${error.message}`));
-  // }
-
-  // Turns date string into object
+  // Turns event date into object based on string source (external or internal API)
   dateStringToObject(date){
-    let date_string = date.substring(6, 19)
-    let date_output = new Date(parseInt(date_string))
+    let date_output = new Date(date)
+    if (date.slice(0,5) == "/Date") {
+      date = date.substring(6, 19)
+      date_output = new Date(parseInt(date))
+    }
+
     return date_output
   }
-  // Formats start date object
+  // Formats reg start date
   editStartDate(date){
     return this.dateStringToObject(date).toLocaleDateString('en-US', {
       day: 'numeric',
@@ -53,7 +28,7 @@ class EventTile extends Component {
     })
   }
 
-  // Formats event registration date object
+  // Formats reg end date
   editRegDate(date){
     return this.dateStringToObject(date).toLocaleString('en-US', {
       day: 'numeric',
@@ -65,6 +40,7 @@ class EventTile extends Component {
   }
 
   render() {
+
     const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
 
     // Displays address field only if present
@@ -74,11 +50,22 @@ class EventTile extends Component {
     }
 
     // Sets specific event date
-    let eventDate = this.editStartDate(EventDate)
+    let eventDate = EventDate
+    if (typeof eventDate == "string") {
+      eventDate = this.editStartDate(EventDate)
+    }
     // Sets event registration open date
-    let regOpen = this.editRegDate(RegOpenDate)
+    let regOpen = RegOpenDate
+    if (typeof regOpen == "string") {
+      regOpen = this.editRegDate(RegOpenDate)
+    }
+
     // Sets event registration close date
-    let regClose = this.editRegDate(RegCloseDate)
+    let regClose = RegCloseDate
+    if (typeof regClose == "string") {
+      regClose = this.editRegDate(RegCloseDate)
+    }
+    
     // Creates string of event types ("Road Race, Recreational", "Recreational, Gravel Grinder", etc)
     let types = EventTypes.join(', ')
 

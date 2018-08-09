@@ -13,5 +13,6 @@ class Event < ApplicationRecord
 
   has_many :favorites
   has_many :event_types
+  has_many :users, through: :favorites
 
 end

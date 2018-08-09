@@ -50,12 +50,13 @@ class FavoriteButton extends Component {
     } else {
       favId = null
     }
+
     let formPayload = {
       activeUser: this.props.activeUser,
       favoriteId: favId,
       eventInfo: this.props.eventInfo
     }
-    debugger
+
     fetch('/api/v1/favorites', {
       credentials: 'same-origin',
       method: 'POST',
@@ -73,14 +74,14 @@ class FavoriteButton extends Component {
       })
     .then(response => response.json())
     .then(body => {
-      debugger
       this.setState({ activeUser: body.activeUser, favoriteRecord: body.favoriteRecord, favorited: body.favorited})
     })
      .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
+   }
 
   render(){
     // Displays add-to-favorites button if user is logged in
+    // Displays messages based on favorited or not
     let favoriteButton = null
     if(this.state.favorited == false) {
       favoriteButton = <a onClick={this.recordFavorite}>Favorite me!</a>

@@ -6,6 +6,9 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def create
+    # Checks for logged in user and event already in DB
+    # If either is missing, event was never favorited by user; return nil for favorited
+    # Else, check for Favorite record and return if found
     favorited = nil
     if params[:activeUser]
       user = User.find(params[:activeUser])

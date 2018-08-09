@@ -1,35 +1,25 @@
 import React, { Component } from 'react'
 import EventTile from '../components/EventTile'
-import EventSearchTile from '../components/EventSearchTile'
 
-class EventsIndexContainer extends Component {
+class UserShowContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       events: [],
-      regionField: '',
-      statesField: '',
       activeUser: null
     }
     this.handleChange = this.handleChange.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
-  // Sets state based on form fields
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  // Fetches local API - renders PORO BikeRegResult to set up search params & initiates outside API call
-  // returns Events from search result and boolean for active user
-  handleSearch(formPayload) {
-    fetch('/api/v1/search/events', {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}
+  componentDidMount() {
+    fetch(`/api/v1/users/${this.props.params.id}`, {
+      credentials: 'same-origin'
     })
     .then(response => {
       if (response.ok) {
@@ -42,7 +32,7 @@ class EventsIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ events: body.events, activeUser: body.authenticated_user })
+      this.setState({ events: body.events, activeUser: body.id })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -52,12 +42,10 @@ class EventsIndexContainer extends Component {
     // Displays 'no results' message if no events returned from Fetch
     // Otherwise maps through events, filtering out past events
     if (this.state.events.length == 0) {
-      events = <div className="no-results">No current search results</div>
+      events = <div className="no-results">No currently favorited upcoming events</div>
     } else {
       events = this.state.events.filter(function(bikeEvent) {
-        let date_string = bikeEvent["EventDate"].substring(6, 19)
-        let date = new Date(parseInt(date_string))
-        if (bikeEvent["EventDate"] == null || date < new Date()) {
+        if (bikeEvent["EventDate"] == null || new Date(bikeEvent["EventDate"]) < new Date()) {
           return false;
         }
         return true;
@@ -74,11 +62,7 @@ class EventsIndexContainer extends Component {
 
     return (
       <div>
-        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events Based On Your Search</h2>
-        <EventSearchTile
-          handlerFunction={this.handleChange}
-          handleSearch={this.handleSearch}
-        />
+        <h2 className="names-in-rounded-box page-header">Upcoming Events On Your Calendar</h2>
         <div className="large-12 medium-12 small-12">
           <div className="row events-tiles">
             {events}
@@ -89,4 +73,5 @@ class EventsIndexContainer extends Component {
   }
 }
 
-export default EventsIndexContainer;
+
+export default UserShowContainer;

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import EventsIndexContainer from './containers/EventsIndexContainer'
+import UserShowContainer from './containers/UserShowContainer'
 import EventTile from './components/EventTile'
 
 class App extends Component {
@@ -19,12 +20,13 @@ class App extends Component {
 
       setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
     })
-    
+
     return (
       <Router history={browserHistory}>
         <Route path='/'>
           <IndexRoute component={EventsIndexContainer} />
           <Route path='/events' component={EventsIndexContainer} />
+          <Route path='/users/:id' component={UserShowContainer} />
         </Route>
       </Router>
     )
