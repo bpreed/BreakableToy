@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import EventsIndexContainer from './containers/EventsIndexContainer'
 import UserShowContainer from './containers/UserShowContainer'
+import TeamShowContainer from './containers/TeamShowContainer'
+import TeamsIndexContainer from './containers/TeamsIndexContainer'
 import EventTile from './components/EventTile'
 
 class App extends Component {
@@ -26,6 +28,8 @@ class App extends Component {
         <Route path='/'>
           <IndexRoute component={EventsIndexContainer} />
           <Route path='/events' component={EventsIndexContainer} />
+          <Route path='/teams' component={TeamsIndexContainer} />
+          <Route path='/teams/:id' component={TeamShowContainer} />
           <Route path='/users/:id' component={UserShowContainer} />
         </Route>
       </Router>

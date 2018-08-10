@@ -11,6 +11,11 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :events, through: :favorites
 
+  has_many :memberships
+  has_many :teams, through: :memberships
+
+
+
   def to_param
     username
   end

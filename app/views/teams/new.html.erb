@@ -1,0 +1,37 @@
+<%- if current_user -%>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %><br>
+    <% end %>
+  <% end %>
+
+  <h2 class="devise-form-header">Add New Team</h2>
+  <%= form_for @team do |f| %>
+    <div class="hidden">
+      <%= f.hidden_field :created_by, value: current_user.id %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :team_photo %><br />
+      <%= f.file_field :team_photo %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit 'Add Team', class: "button" %>
+    </div>
+  <% end %>
+
+<% else %>
+  <% flash.now[:warning] = "You must be logged in create a team" %>
+<% end %>
