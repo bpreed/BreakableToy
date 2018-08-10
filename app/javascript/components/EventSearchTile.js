@@ -18,16 +18,19 @@ class EventSearchTile extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // Sets state based on non-multi-select field input
   handleChange(event){
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  // Sets state based on multi-select input
   handleMultiSelect(optionsList){
     this.setState(optionsList)
   }
 
+  // Invokes handleSearch function from EventsIndexContainer
   handleSubmit(event){
     event.preventDefault()
     let formPayload = {
@@ -40,8 +43,8 @@ class EventSearchTile extends Component {
     this.props.handleSearch(formPayload)
   }
 
-
   render() {
+    // Initializes Year select field
     let yearSelect
     yearSelect = <div>
      <select name='year' value={this.state.year || ''} onChange={this.handleChange}>
@@ -52,6 +55,7 @@ class EventSearchTile extends Component {
      </select>
    </div>
 
+   // Initializes Region select field
     let regionSelect
     regionSelect = <div>
      <select name='region' value={this.state.region || ''} onChange={this.handleChange}>

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import  MultiSelectReact  from 'multi-select-react';
 
+// Renders multi-select field with options specified
+
 class MultiSelectTile extends Component {
   constructor() {
         super();
-        this.state = {
-
-        };
     }
 
   optionClicked(optionsList) {

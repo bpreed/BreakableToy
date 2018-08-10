@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_191953) do
+ActiveRecord::Schema.define(version: 2018_08_08_220706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,19 +26,28 @@ ActiveRecord::Schema.define(version: 2018_08_06_191953) do
 
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address", null: false
+    t.string "address"
     t.string "city", null: false
     t.string "state", null: false
     t.string "url", null: false
-    t.decimal "latitude", null: false
-    t.decimal "longitude", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bike_reg_id", null: false
+    t.text "types", default: [], array: true
+    t.string "latitude", null: false
+    t.string "longitude", null: false
     t.datetime "date", null: false
     t.datetime "reg_open", null: false
     t.datetime "reg_close", null: false
-    t.integer "bike_reg_id", null: false
-    t.text "type", default: [], array: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_favorites_on_event_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -60,8 +69,12 @@ ActiveRecord::Schema.define(version: 2018_08_06_191953) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username", null: false
+    t.string "role", default: "member", null: false
+    t.string "profile_photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
