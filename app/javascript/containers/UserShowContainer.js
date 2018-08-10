@@ -72,7 +72,7 @@ class UserShowContainer extends Component {
             <div className="email">
               {this.state.activeUser.email}
             </div>
-            <a className="profile-edit" href={`/users/edit/${this.state.activeUser.username}`}>Edit</a>
+            <a className="profile-edit" href={`/users/edit`}>Edit</a>
           </div>
         </span>
       </div>

@@ -24,11 +24,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 .event-map {
-  display: flex;
   justify-content: flex-end;
+  align-content: flex-end;
+  padding-left: 2rem;
+  padding-right: .25rem;
 }
 
 .favorite-button {
@@ -41,6 +44,7 @@
 
 .event-name {
   font-size: 1.75rem;
+  margin-right: .5rem;
 }
 
 .event-header {
