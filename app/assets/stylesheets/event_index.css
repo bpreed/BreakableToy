@@ -26,6 +26,11 @@
   justify-content: flex-end;
 }
 
+.event-map {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .favorite-button {
   display: flex;
   align-items: center;
@@ -49,6 +54,16 @@
 
 .no-results {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 3.5rem;
   font-size: 2rem;
+}
+
+.bottom-event-tile {
+  -ms-display: flexbox;
+  display: flex;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
 }

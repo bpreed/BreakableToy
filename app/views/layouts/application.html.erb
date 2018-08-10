@@ -12,26 +12,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="background-image">
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">BreakableToy</a></h1>
-        </li>
-      </ul>
-
-      <section class="top-bar-section">
-        <ul>
-          <%- if current_user -%>
-            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <%- else -%>
-            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-            <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <%- end -%>
+  <div id="background">
+    <span id="top-bar">
+      <nav class="top-bar">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/">BreakableToy</a></h1>
+          </li>
         </ul>
-      </section>
-    </nav>
+
+        <span class="top-bar-section">
+          <ul class="right">
+            <%- if current_user -%>
+              <li><%= link_to 'My Events', user_path(current_user) %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+          </ul>
+        </span>
+      </nav>
+    </div>
 
   <div id="flash-messages">
     <%- flash.each do |key, value| -%>

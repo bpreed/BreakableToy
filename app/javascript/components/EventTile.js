@@ -45,8 +45,10 @@ class EventTile extends Component {
 
     // Displays address field only if present
     let addressDiv;
+    let addressURL = ""
     if (EventAddress != "") {
       addressDiv = <div className="event-detail" id="event-address">{EventAddress}</div>
+      addressURL = EventAddress.replace(/\s/g, '+') + ','
     }
 
     // Sets specific event date
@@ -65,7 +67,7 @@ class EventTile extends Component {
     if (typeof regClose == "string") {
       regClose = this.editRegDate(RegCloseDate)
     }
-    
+
     // Creates string of event types ("Road Race, Recreational", "Recreational, Gravel Grinder", etc)
     let types = EventTypes.join(', ')
 
@@ -89,19 +91,28 @@ class EventTile extends Component {
         <span className="event-header">
           <div className="event-detail event-name small-9 large-9">{EventName}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div>
         </span>
-        {addressDiv}
-        <div className="event-detail event-location">
-          {EventCity}, {EventState}
-        </div>
-        <div className="event-detail event-url"><a href={`${EventUrl}`}>
-          Event Registration</a>
-        </div>
-        <div className="event-detail event-reg-open">
-          Registration opens: {regOpen}
-        </div>
-        <div className="event-detail event-reg-close">
-          Registration closes: {regClose}
-        </div>
+          <span className="bottom-event-tile">
+          <div className="event-detail event-name small-7 large-7">
+            {addressDiv}
+            <div className="event-detail event-location">
+              {EventCity}, {EventState}
+            </div>
+            <div className="event-detail event-url"><a href={`${EventUrl}`} target="blank">
+              Event Registration</a>
+            </div>
+            <div className="event-detail event-reg-open">
+              Registration opens: {regOpen}
+            </div>
+            <div className="event-detail event-reg-close">
+              Registration closes: {regClose}
+            </div>
+          </div>
+          <div className="event-detail event-map small-5 large-5">
+            <iframe
+              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC9RTagiZmsEeP_UMEJK2wdf3ITgb9tcSk&q=${addressURL},${EventCity.replace(/\s/g, '+') + ','},${EventState}`}>
+            </iframe>
+          </div>
+        </span>
       </div>
     )
   }

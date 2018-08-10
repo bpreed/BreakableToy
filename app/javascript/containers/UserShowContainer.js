@@ -32,7 +32,7 @@ class UserShowContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ events: body.events, activeUser: body.id })
+      this.setState({ events: body.events, activeUser: body })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -53,16 +53,35 @@ class UserShowContainer extends Component {
         return (
           <EventTile
             key={bike_event.EventId}
-            activeUser={this.state.activeUser}
+            activeUser={this.state.activeUser.id}
             eventInfo={bike_event}
           />
         )
       })
     }
 
+    let profileInfo;
+    if (this.state.activeUser) {
+      profileInfo = <div className="profile-div">
+        <span className="user-profile-info">
+          <img className="user-profile-photo" src={this.state.activeUser.profile_photo.url}/>
+          <div className="user-email-username">
+            <div className="username">
+              {this.state.activeUser.username}
+            </div>
+            <div className="email">
+              {this.state.activeUser.email}
+            </div>
+            <a className="profile-edit" href={`/users/edit/${this.state.activeUser.username}`}>Edit</a>
+          </div>
+        </span>
+      </div>
+    }
+
     return (
       <div>
-        <h2 className="names-in-rounded-box page-header">Upcoming Events On Your Calendar</h2>
+        {profileInfo}
+        <h2 className="names-in-rounded-box page-header">My Upcoming Events</h2>
         <div className="large-12 medium-12 small-12">
           <div className="row events-tiles">
             {events}
