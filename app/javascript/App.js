@@ -31,6 +31,7 @@ class App extends Component {
           <Route path='/teams' component={TeamsIndexContainer} />
           <Route path='/teams/:id' component={TeamShowContainer} />
           <Route path='/users/:id' component={UserShowContainer} />
+          <Route path='/users/:id/teams' component={TeamsIndexContainer} />
         </Route>
       </Router>
     )

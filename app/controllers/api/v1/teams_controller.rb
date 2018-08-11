@@ -1,7 +1,19 @@
-class TeamsController < ApplicationController
+class Api::V1::TeamsController < ApplicationController
   before_action :authorize_user
 
   def index
+    if params[:user_id]
+      if params[:user_id] == current_user.username
+        user = User.find_by(username: params[:user_id])
+        render json: user, serializer: UserShowSerializer
+      else
+        message = "You do not have access to this page"
+        render json: { message: message, current_user: current_user }
+      end
+    else
+      teams = Team.all
+      render json: { teams: teams, current_user: current_user }
+    end
   end
 
   def show
@@ -18,8 +30,6 @@ class TeamsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @team = Team.new(team_params)
-      # name: params[:name], description: params[:description], team_photo: params[:team_photo], created_by: params[:created_by])
-    # @team.created_by = @user.id
     if @team.save
       Membership.create(user: @user, team: @team)
       flash[:notice] = "Team added successfully"

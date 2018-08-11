@@ -24,6 +24,7 @@
         <span class="top-bar-section">
           <ul class="right">
             <%- if current_user -%>
+              <li><%= link_to 'My Teams', user_teams_path(current_user) %></li>
               <li><%= link_to 'My Events', user_path(current_user) %></li>
               <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
             <%- else -%>

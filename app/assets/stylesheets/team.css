@@ -18,3 +18,35 @@
 .new_team em {
   font-size: .8rem;
 }
+
+.edit_user {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.edit_user label {
+  margin-bottom: -1rem;
+}
+
+.edit_user em {
+  font-size: .8rem;
+}
+
+.create-join-team-links {
+  margin-top: 0rem;
+  margin-bottom: auto;
+  text-align: center;
+  align-content: center;
+}
+
+.teams-tiles {
+  max-width: 30rem;
+}
