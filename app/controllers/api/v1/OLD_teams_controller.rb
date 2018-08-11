@@ -2,8 +2,18 @@ class Api::V1::TeamsController < ApplicationController
   before_action :authorize_user
 
   def index
-    teams = Team.all
-    render json: teams
+    if params[:user_id] && params[:user_id] != "undefined"
+      if params[:user_id] == current_user.username
+        user = User.find_by(username: params[:user_id])
+        render json: user, serializer: UserShowSerializer
+      else
+        message = "You do not have access to that page"
+        render json: { message: message, current_user: current_user }
+      end
+    else
+      teams = Team.all
+      render json: { teams: teams }
+    end
   end
 
   def show

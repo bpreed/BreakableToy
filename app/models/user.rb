@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def admin_access
     if !user_signed_in || !current_user.admin?
-      flash[:notice] = "You do not have access to this page."
+      flash[:notice] = "You do not have access to that page."
       redirect_to root_path
     end
   end

@@ -50,3 +50,42 @@
 .teams-tiles {
   max-width: 30rem;
 }
+
+.team-name {
+  font-size: 1.5rem;
+}
+
+.create-join-team-links {
+  margin-top: -.5rem;
+}
+
+.team-header {
+  display: flex;
+}
+/*
+.bottom-team-tile {
+  display: flex;
+} */
+
+.team-captain {
+font-size: .8rem;
+font-weight: 400;
+}
+
+#team-photo {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  justify-content: flex-end;
+  display: flex;
+  max-height: 150px;
+  width: auto;
+  border-radius: 10px;
+}
+
+#captain {
+  margin-right: .25rem;
+}
+
+#create-team {
+  text-align: center;
+}

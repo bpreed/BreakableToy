@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
   before_action :authorize_user
 
   def index
+    @teams = Team.all
+    @user = current_user
   end
 
   def show
@@ -18,14 +20,13 @@ class TeamsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @team = Team.new(team_params)
-      # name: params[:name], description: params[:description], team_photo: params[:team_photo], created_by: params[:created_by])
-    # @team.created_by = @user.id
+    @team.captain_id = @user.id
     if @team.save
       Membership.create(user: @user, team: @team)
       flash[:notice] = "Team added successfully"
       redirect_to teams_path
     else
-      @errors = @team.errors.full_messages
+      errors = team.errors.full_messages
       render :new
     end
   end
@@ -38,7 +39,7 @@ class TeamsController < ApplicationController
 
   def authorize_user
     if !user_signed_in?
-      flash[:notice] = "You do not have access to this page."
+      flash[:notice] = "You do not have access to that page."
       redirect_to root_path
     end
   end
