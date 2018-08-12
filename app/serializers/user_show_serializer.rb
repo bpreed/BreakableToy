@@ -5,7 +5,7 @@ class UserShowSerializer < ActiveModel::Serializer
   has_many :teams
 
   def events
-    object.events
+    object.events.sort_by { |event| event.date}
   end
 
 end
