@@ -115,7 +115,6 @@ class TeamShowContainer extends Component {
       if (this.state.team.currentUser.id == this.state.team.captain.id) {
         editTeam = <a href={`/teams/${this.props.params.id}/edit`}>Edit Team</a>
       }
-
     }
 
     return (

@@ -86,9 +86,6 @@
 
 .team-captain {
   font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .team-members {
@@ -100,10 +97,8 @@
 }
 
 #team-photo {
-  justify-content: flex-end;
-  display: flex;
   max-height: 150px;
-  width: auto;
+  max-width: 150px;
   border-radius: 10px;
 }
 
@@ -158,4 +153,8 @@
 
 .team-name-header {
   margin-bottom: 0rem;
+}
+
+.team-description {
+  font-style: italic;
 }

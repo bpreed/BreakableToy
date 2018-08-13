@@ -45,6 +45,7 @@
 .event-name {
   font-size: 1.75rem;
   margin-right: .5rem;
+  font-weight: bold;
 }
 
 .event-header {
@@ -53,7 +54,8 @@
 }
 
 .event-types {
-  font-size: 1rem;
+  font-size: .9rem;
+  font-style: italic;
 }
 
 .no-results {
@@ -70,4 +72,27 @@
 iframe {
   width: 100%;
   height: auto;
+}
+
+.event-reg-open{
+  font-size: .9rem;
+}
+
+.event-reg-close{
+  font-size: .9rem;
+}
+
+.event-url {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+}
+
+#event-address {
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.event-location {
+  font-style: italic;
+  font-size: 1.1rem;
 }

@@ -74,7 +74,7 @@ class EventsIndexContainer extends Component {
 
     return (
       <div>
-        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events Based On Your Search</h2>
+        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events</h2>
         <EventSearchTile
           handlerFunction={this.handleChange}
           handleSearch={this.handleSearch}

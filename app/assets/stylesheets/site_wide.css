@@ -4,6 +4,10 @@ body {
   background-size: cover;
 }
 
+#app {
+  margin-top: 5rem;
+}
+
 #top-bar {
   height: 3.5rem;
   background: #333355;
@@ -52,7 +56,7 @@ body {
 }
 
 .top-bar-section ul li > a {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   height: 3.5rem;
 }
 
@@ -89,9 +93,21 @@ h2 {
   letter-spacing: .1em;
   text-shadow:
     1px 1px 1px #ddccaa;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 a {
   color: #763276;
+}
+
+#flash-messages {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-errors {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }

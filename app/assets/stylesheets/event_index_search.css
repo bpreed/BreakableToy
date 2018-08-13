@@ -32,6 +32,11 @@
   margin: auto;
 }
 
+.search-third-row {
+  display: inline-flex;
+  margin: auto;
+}
+
 .region-select {
   margin-right: 1rem;
   margin-left: 1rem;
@@ -76,4 +81,12 @@ select {
   text-shadow:
     /* -1px -1px 1px #b0a388, */
     2px 2px 1px #9a8e76;
+}
+
+.multi-select-states {
+  padding-right: 2rem;
+}
+
+.multi-select-types {
+  padding-right: 2rem;
 }
