@@ -67,4 +67,13 @@ select {
   margin-left: auto;
   margin-right: 6rem;
   display: flex;
+  border-radius: 10px;
+}
+
+.no-results {
+  color: #ddccaa;
+  letter-spacing: .1em;
+  text-shadow:
+    /* -1px -1px 1px #b0a388, */
+    2px 2px 1px #9a8e76;
 }

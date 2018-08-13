@@ -38,14 +38,29 @@ class UserShowContainer extends Component {
   }
 
   render() {
-    let events;
+    let upcomingEvents;
+    let pastEvents;
     // Displays 'no results' message if no events returned from Fetch
     // Otherwise maps through events, filtering out past events
     if (this.state.events.length == 0) {
-      events = <div className="no-results">No currently favorited upcoming events</div>
+      upcomingEvents = <div className="no-results">No currently favorited upcoming events</div>
     } else {
-      events = this.state.events.filter(function(bikeEvent) {
-        if (bikeEvent["EventDate"] == null || new Date(bikeEvent["EventDate"]) < new Date()) {
+      upcomingEvents = this.state.events.filter(function(bikeEvent) {
+        if (bikeEvent["EventDate"] == null || new Date(bikeEvent["EventDate"]) <= new Date()) {
+          return false;
+        }
+        return true;
+      }).map((bike_event) => {
+        return (
+          <EventTile
+            key={bike_event.EventId}
+            activeUser={this.state.activeUser.id}
+            eventInfo={bike_event}
+          />
+        )
+      })
+      pastEvents = this.state.events.filter(function(bikeEvent) {
+        if (bikeEvent["EventDate"] == null || new Date(bikeEvent["EventDate"]) > new Date()) {
           return false;
         }
         return true;
@@ -84,7 +99,13 @@ class UserShowContainer extends Component {
         <h2 className="names-in-rounded-box page-header">My Upcoming Events</h2>
         <div className="large-12 medium-12 small-12">
           <div className="row events-tiles">
-            {events}
+            {upcomingEvents}
+          </div>
+        </div>
+        <h2 className="names-in-rounded-box page-header">My Past Events</h2>
+        <div className="large-12 medium-12 small-12">
+          <div className="row events-tiles">
+            {pastEvents}
           </div>
         </div>
       </div>

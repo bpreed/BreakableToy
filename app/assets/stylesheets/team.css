@@ -1,0 +1,161 @@
+.new_team {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.new_team label {
+  margin-bottom: -1rem;
+}
+
+.new_team em {
+  font-size: .8rem;
+}
+
+.edit_team {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.edit_team label {
+  margin-bottom: -1rem;
+}
+
+.edit_team em {
+  font-size: .8rem;
+}
+
+.edit_user {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.edit_user label {
+  margin-bottom: -1rem;
+}
+
+.edit_user em {
+  font-size: .8rem;
+}
+
+.create-join-team-links {
+  margin-top: 0rem;
+  margin-bottom: auto;
+  text-align: center;
+  align-content: center;
+}
+
+.teams-tiles {
+  max-width: 30rem;
+}
+
+.team-name {
+  font-size: 1.5rem;
+}
+
+.create-join-team-links {
+  margin-top: -.5rem;
+}
+
+.team-header {
+  display: flex;
+}
+
+.team-captain {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.team-members {
+  font-weight: 500;
+  align-items: center;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#team-photo {
+  justify-content: flex-end;
+  display: flex;
+  max-height: 150px;
+  width: auto;
+  border-radius: 10px;
+}
+
+#captain {
+  margin-right: .25rem;
+}
+
+#create-team {
+  text-align: center;
+}
+
+.join-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: .9rem;
+  font-weight: 300;
+}
+
+#edit-team-link {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-size: .9rem;
+}
+
+.team-profile-photo {
+  margin: auto;
+  max-width: 150px;
+}
+
+.members-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.captain-label {
+  margin-left: .4rem;
+  display: inline;
+  font-size: .8rem;
+}
+
+#team-info {
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fdf6f6;
+  background:rgba(255,255,255,0.5);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.team-name-header {
+  margin-bottom: 0rem;
+}

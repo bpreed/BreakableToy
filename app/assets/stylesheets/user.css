@@ -33,3 +33,20 @@
   font-size: .8rem;
   margin-top: .5rem;
 }
+
+.user-confirm-password-label {
+  margin-bottom: 0rem;
+  margin-top: .5rem;
+}
+
+#user-edit-password-label {
+  margin-bottom: 0rem;
+}
+
+#user-current-password-label {
+  margin-bottom: 0rem;
+}
+
+#user_password {
+  margin-bottom: .25rem;
+}

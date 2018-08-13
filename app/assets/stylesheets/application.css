@@ -17,5 +17,7 @@
  *= require event_index.css
  *= require event_index_search.css
  *= require devise_styling.css
+ *= require team.css
+ *= require user.css
 
  */

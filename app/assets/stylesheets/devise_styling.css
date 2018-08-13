@@ -23,11 +23,29 @@
   font-size: .8rem;
 }
 
-#password-label {
+#reg-password-label {
   margin-bottom: -.3rem;
 }
 
 .devise-form-links {
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cancel-account {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+#cancel-account-header {
   margin-top: 1rem;
 }

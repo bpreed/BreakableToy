@@ -1,0 +1,41 @@
+<%- if current_user.id == @team.captain.id -%>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %><br>
+    <% end %>
+  <% end %>
+
+  <h2 class="devise-form-header">Edit Team</h2>
+  <%= form_for @team do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :team_photo %><br />
+      <%= f.file_field :team_photo %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Edit Team', class: "button" %>
+    </div>
+  <% end %>
+
+  <div class="devise-form-links">
+    <%= link_to 'Delete This Team', team_path(@team),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="devise-form-links">
+    <%= link_to "Back", :back %>
+  </div>
+
+<% else %>
+  <% flash.now[:notice] = "You are not authorized to view this page." %>
+<% end %>
