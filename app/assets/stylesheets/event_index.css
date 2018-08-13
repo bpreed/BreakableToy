@@ -24,6 +24,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.event-map {
+  justify-content: flex-end;
+  align-content: flex-end;
+  padding-left: 2rem;
+  padding-right: .25rem;
 }
 
 .favorite-button {
@@ -36,6 +44,7 @@
 
 .event-name {
   font-size: 1.75rem;
+  margin-right: .5rem;
 }
 
 .event-header {
@@ -49,6 +58,16 @@
 
 .no-results {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 3.5rem;
   font-size: 2rem;
+}
+
+.bottom-event-tile {
+  -ms-display: flexbox;
+  display: flex;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
 }
