@@ -88,7 +88,8 @@ h2 {
   color: #763276;
   letter-spacing: .1em;
   text-shadow:
-    1px 1px 1px #9a8e76;
+    1px 1px 1px #ddccaa;
+  font-weight: bold; 
 }
 
 a {
