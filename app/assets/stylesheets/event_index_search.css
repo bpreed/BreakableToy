@@ -90,3 +90,11 @@ select {
 .multi-select-types {
   padding-right: 2rem;
 }
+
+#search-limit {
+  font-style: italic;
+  font-size: .8rem;
+  margin-bottom: 0rem;
+  margin-top: -1rem;
+  margin-left: .2rem;
+}

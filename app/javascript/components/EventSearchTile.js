@@ -75,8 +75,12 @@ class EventSearchTile extends Component {
     return (
       <div className="large-12 medium-12 small-12 search-tile">
         <form id="search-form" className="search-form" onSubmit={this.handleSubmit}>
-          <h3 id="search-title">Search Criteria</h3>
-          <h5 id="search-instructions">All fields optional. Selected region takes precedence over selected state(s).</h5>
+          <h3 id="search-title">
+            Search Criteria
+          </h3>
+          <h5 id="search-instructions">
+            All fields optional. Selected region takes precedence over selected state(s).
+          </h5>
             <span className="row search-top-row">
               <div className="region-select large-6 medium-6 small-12">
                 Select a region:
@@ -112,6 +116,9 @@ class EventSearchTile extends Component {
               </div>
             </span>
           <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
+          <p id="search-limit">
+            Results limited to first 100
+          </p>
         </form>
       </div>
     )
