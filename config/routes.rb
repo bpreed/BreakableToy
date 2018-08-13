@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :teams, only: [:index]
   end
 
-  resources :teams, only: [:index, :show, :new, :create]
+  resources :teams, only: [:index, :show, :new, :create, :edit]
 
   namespace :api do
     namespace :v1 do

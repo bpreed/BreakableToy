@@ -19,6 +19,27 @@
   font-size: .8rem;
 }
 
+.edit_team {
+  background: #fdf6f6;
+  margin: auto;
+  max-width: 30rem;
+  border: 3px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.edit_team label {
+  margin-bottom: -1rem;
+}
+
+.edit_team em {
+  font-size: .8rem;
+}
+
 .edit_user {
   background: #fdf6f6;
   margin: auto;
@@ -71,11 +92,11 @@
 }
 
 .team-members {
-  font-weight: 400;
+  font-weight: 500;
   align-items: center;
-  justify-content: flex-end;
-  font-size: .9rem;
-  text-align: right;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 #team-photo {
@@ -104,4 +125,37 @@
 
 #edit-team-link {
   text-align: center;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-size: .9rem;
+}
+
+.team-profile-photo {
+  margin: auto;
+  max-width: 150px;
+}
+
+.members-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.captain-label {
+  margin-left: .4rem;
+  display: inline;
+  font-size: .8rem;
+}
+
+#team-info {
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fdf6f6;
+  background:rgba(255,255,255,0.5);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.team-name-header {
+  margin-bottom: 0rem;
 }
