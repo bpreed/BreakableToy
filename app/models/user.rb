@@ -14,11 +14,17 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :teams, through: :memberships
 
-
-
   def to_param
     username
   end
+
+  def check_avatar(user)
+     if user.profile_photo.nil?
+       return "/assets/images/user_default.png"
+    else
+       return user.profile_photo
+    end
+end
 
   def admin?
     role == "admin"

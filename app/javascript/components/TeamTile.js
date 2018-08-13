@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import FavoriteButton from '../components/FavoriteButton'
+import JoinTeamButton from '../components/JoinTeamButton'
 
 class TeamTile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
   }
 
 
   render() {
-    const { name, description, captain, photo } = this.props.teamInfo
+
+    const { name, description, captain, photo, members } = this.props.teamInfo
+
+    let membersList
+    let membersDiv
+    if (this.props.displayMembers) {
+      membersList = members.map((member) => {
+        return (
+          <div className="member">
+            <Link to={`/users/${member.username}`}>
+              {member.username}
+            </Link><br />
+          </div>
+        )
+      })
+      membersDiv = <div className="team-detail team-members">
+                    Members:
+                    {membersList}
+                  </div>
+    }
 
     return (
       <div className="small-12 event-tile">
@@ -24,16 +41,22 @@ class TeamTile extends Component {
                 "{description}"
               </div>
               <br />
-              <div className="team-detail team-captain">
-                <span id="captain">
-                  Captain:
-                </span>
-                <Link to={`/users/${this.props.teamInfo.captain.username}`}>{captain.username}</Link>
+              <div className="team-detail team-photo small-4 large-4">
+                <img src={photo} id="team-photo"/>
               </div>
             </span>
           </div>
           <div className="team-detail team-photo small-4 large-4">
-            <img src={photo} id="team-photo"/>
+            <JoinTeamButton
+              teamInfo={this.props.teamInfo}
+            />
+            <div className="team-detail team-captain">
+              <span id="captain">
+                Captain:
+              </span>
+              <Link to={`/users/${this.props.teamInfo.captain.username}`}>{captain.username}</Link>
+            </div>
+            {membersDiv}
           </div>
         </span>
       </div>

@@ -1,4 +1,5 @@
 class Api::V1::TeamsController < ApplicationController
+  protect_from_forgery unless: -> { request.format.json? }
   before_action :authorize_user
 
   def index
@@ -8,6 +9,7 @@ class Api::V1::TeamsController < ApplicationController
 
   def show
     team = Team.find(params[:id])
+    render json: team, serializer: TeamShowSerializer
   end
 
   def new
@@ -18,16 +20,13 @@ class Api::V1::TeamsController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user.id)
-    @team = Team.new(team_params)
-    if @team.save
-      Membership.create(user: @user, team: @team)
-      flash[:notice] = "Team added successfully"
-      redirect_to teams_path
-    else
-      @errors = @team.errors.full_messages
-      render :new
+    membership = nil
+    team = Team.find(params[:teamInfo][:id])
+    user = User.find(params[:teamInfo][:currentUser][:id])
+    if Membership.where(team: team, user: user).length > 0
+      membership = Membership.where(team: team, user: user)[0]
     end
+    render json: { membershipRecord: membership, active_user: params[:teamInfo][:currentUser] }
   end
 
   private

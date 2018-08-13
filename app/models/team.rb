@@ -8,6 +8,8 @@ class Team < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
+  has_many :events, through: :users
+
   belongs_to :captain, class_name: "User"
 
 end

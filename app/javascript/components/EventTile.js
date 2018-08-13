@@ -40,7 +40,6 @@ class EventTile extends Component {
   }
 
   render() {
-
     const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
 
     // Displays address field only if present

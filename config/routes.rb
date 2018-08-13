@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :events, only: [:index, :create]
       resources :favorites, only: [:create]
+      resources :memberships, only: [:create]
       resources :users, only: [:show] do
         resources :teams, only: [:index]
       end
-      resources :teams, only: [:show, :index]
+      resources :teams, only: [:show, :index, :create]
       namespace :search do
         resources :events, only: [:create]
       end
