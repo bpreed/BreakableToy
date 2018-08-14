@@ -34,7 +34,8 @@ gem 'mini_magick'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'active_model_serializers'
 gem 'httparty'
-gem "carrierwave"
+gem 'carrierwave'
+gem 'fog'
 
 group :development, :test do
 

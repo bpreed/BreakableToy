@@ -12,6 +12,30 @@ class EventTile extends Component {
     }
   }
 
+  componentDidMount() {
+    let formPayload = this.props.eventInfo
+    fetch('/api/v1/events/events', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ weather: { eventWeatherHigh: body.EventWeatherHigh, eventWeatherLow: body.EventWeatherLow, eventWeatherSummary: body.EventWeatherSummary, eventPrecipProb: body.EventPrecipProb } })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   // Turns event date into object based on string source (external or internal API)
   dateStringToObject(date){
     let date_output = new Date(date)
@@ -19,7 +43,6 @@ class EventTile extends Component {
       date = date.substring(6, 19)
       date_output = new Date(parseInt(date))
     }
-
     return date_output
   }
 
@@ -44,7 +67,7 @@ class EventTile extends Component {
   }
 
   render() {
-    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes, EventPrecipProb, EventWeatherLow, EventWeatherHigh, EventWeatherSummary } = this.props.eventInfo
+    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
 
     // Displays address field only if present
     let addressDiv;
@@ -112,10 +135,10 @@ class EventTile extends Component {
             <div className="event-detail event-weather">
               <p>Expected weather:</p>
               <div className="event-detail event-weather-summary">
-                {EventWeatherSummary}
+                {this.state.weather.eventWeatherSummary}
               </div>
               <div className="event-detail event-weather-details">
-                High: {EventWeatherHigh}F / Low: {EventWeatherLow}F / Chance of precipitation: {EventPrecipProb}%
+                High: {this.state.weather.eventWeatherHigh}F / Low: {this.state.weather.eventWeatherLow}F / Chance of precipitation: {this.state.weather.eventPrecipProb}%
               </div>
             </div>
           </div>

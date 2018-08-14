@@ -12,7 +12,6 @@ class EventSearchTile extends Component {
       name: '',
       types: [],
       year: '',
-      // loadingDiv: <div className="lds-space"></div>
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleMultiSelect = this.handleMultiSelect.bind(this)
@@ -26,14 +25,6 @@ class EventSearchTile extends Component {
       [event.target.name]: event.target.value
     })
   }
-
-  // delayState() {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       loadingDiv: <div className="lds-space"></div>
-  //     })
-  //   }, 7000);
-  // }
 
   // Sets state based on multi-select input
   handleMultiSelect(optionsList){
@@ -52,7 +43,6 @@ class EventSearchTile extends Component {
       year: this.state.year
     }
     this.props.handleSearch(formPayload)
-    // this.setState({ loadingDiv: <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> }, this.delayState())
   }
 
   render() {
@@ -135,7 +125,7 @@ class EventSearchTile extends Component {
             </span>
           <span className="row search-fourth-row">
             <p id="search-limit">
-              Limited to first 20 results; please be patient!
+              Limited to first 20 results; five per page
             </p>
             <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
             {inSearchIcon}

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       namespace :search do
         resources :events, only: [:create]
       end
+      namespace :events do
+        resources :events, only: [:create]
+      end
     end
   end
 end
