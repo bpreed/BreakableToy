@@ -5,7 +5,10 @@ class EventTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoriteRecord: null
+      favoriteRecord: null,
+      latitude: null,
+      longitude: null,
+      weather: {}
     }
   }
 
@@ -19,6 +22,7 @@ class EventTile extends Component {
 
     return date_output
   }
+
   // Formats reg start date
   editStartDate(date){
     return this.dateStringToObject(date).toLocaleDateString('en-US', {
@@ -40,7 +44,7 @@ class EventTile extends Component {
   }
 
   render() {
-    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes, EventPrecipProb, EventWeatherLow, EventWeatherHigh, EventWeatherSummary } = this.props.eventInfo
 
     // Displays address field only if present
     let addressDiv;
@@ -104,6 +108,15 @@ class EventTile extends Component {
             </div>
             <div className="event-detail event-reg-close">
               Closes: {regClose}
+            </div>
+            <div className="event-detail event-weather">
+              <p>Expected weather:</p>
+              <div className="event-detail event-weather-summary">
+                {EventWeatherSummary}
+              </div>
+              <div className="event-detail event-weather-details">
+                High: {EventWeatherHigh}F / Low: {EventWeatherLow}F / Chance of precipitation: {EventPrecipProb}%
+              </div>
             </div>
           </div>
           <div className="event-detail event-map small-5 large-5">

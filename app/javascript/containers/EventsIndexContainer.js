@@ -10,6 +10,7 @@ class EventsIndexContainer extends Component {
       regionField: '',
       statesField: '',
       activeUser: null,
+      searchInProgress: false,
       pageCount: 0
     }
     this.handleChange = this.handleChange.bind(this)
@@ -35,6 +36,9 @@ class EventsIndexContainer extends Component {
   // Fetches local API - renders PORO BikeRegResult to set up search params & initiates outside API call
   // returns Events from search result and boolean for active user
   handleSearch(formPayload) {
+    this.setState({
+      searchInProgress: true
+    })
     fetch('/api/v1/search/events', {
       credentials: 'same-origin',
       method: 'POST',
@@ -52,7 +56,7 @@ class EventsIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ events: body.events, activeUser: body.authenticated_user })
+      this.setState({ events: body.events, activeUser: body.authenticated_user, searchInProgress: false })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -61,7 +65,7 @@ class EventsIndexContainer extends Component {
     let nextButton
     let pastButton
 
-    if (this.state.events.length > (this.state.pageCount * 10 + 10)) {
+    if (this.state.events.length > (this.state.pageCount * 5 + 5)) {
       nextButton = <button type="submit" id="next-button" onClick={this.changePageCount} value="Submit">Next</button>
     }
 
@@ -74,7 +78,7 @@ class EventsIndexContainer extends Component {
     if (this.state.events.length == 0) {
       events = <div className="no-results">No current search results</div>
     } else {
-      events = this.state.events.slice((this.state.pageCount * 10), (this.state.pageCount * 10 + 10)).map((bike_event) => {
+      events = this.state.events.slice((this.state.pageCount * 5), (this.state.pageCount * 5 + 5)).map((bike_event) => {
         return (
           <EventTile
             key={bike_event.EventId}
@@ -90,6 +94,7 @@ class EventsIndexContainer extends Component {
         <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events</h2>
         <EventSearchTile
           handleSearch={this.handleSearch}
+          searchInProgress={this.state.searchInProgress}
         />
         <div className="pagination large-12 medium-12 small-12">
           <span className="row pagination-buttons">
