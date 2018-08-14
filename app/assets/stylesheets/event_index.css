@@ -117,3 +117,20 @@ iframe {
 .next-button-div {
   margin-left: auto;
 }
+
+.event-weather {
+  font-size: .9rem;
+}
+
+.event-weather p {
+  margin-bottom: 0rem;
+  margin-top: .75rem;
+}
+
+.event-weather-summary {
+  font-size: .9rem;
+}
+
+.event-weather-details {
+  font-size: .9rem;
+}
