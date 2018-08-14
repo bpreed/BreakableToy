@@ -9,10 +9,12 @@ class EventsIndexContainer extends Component {
       events: [],
       regionField: '',
       statesField: '',
-      activeUser: null
+      activeUser: null,
+      pageCount: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.changePageCount = this.changePageCount.bind(this)
   }
 
   // Sets state based on form fields
@@ -20,6 +22,14 @@ class EventsIndexContainer extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  changePageCount(event) {
+    if (event.target.id == "next-button") {
+      this.setState({ pageCount: this.state.pageCount + 1 })
+    } else if (event.target.id == "past-button") {
+      this.setState({ pageCount: this.state.pageCount - 1 })
+    }
   }
 
   // Fetches local API - renders PORO BikeRegResult to set up search params & initiates outside API call
@@ -48,13 +58,23 @@ class EventsIndexContainer extends Component {
   }
 
   render() {
+    let nextButton
+    let pastButton
+
+    if (this.state.events.length > (this.state.pageCount * 10 + 10)) {
+      nextButton = <button type="submit" id="next-button" onClick={this.changePageCount} value="Submit">Next</button>
+    }
+
+    if (this.state.pageCount > 0) {
+      pastButton = <button type="submit" id="past-button" onClick={this.changePageCount} value="Submit">Previous</button>
+    }
     let events;
     // Displays 'no results' message if no events returned from Fetch
     // Otherwise maps through events, filtering out past events
     if (this.state.events.length == 0) {
       events = <div className="no-results">No current search results</div>
     } else {
-      events = this.state.events.map((bike_event) => {
+      events = this.state.events.slice((this.state.pageCount * 10), (this.state.pageCount * 10 + 10)).map((bike_event) => {
         return (
           <EventTile
             key={bike_event.EventId}
@@ -69,13 +89,32 @@ class EventsIndexContainer extends Component {
       <div>
         <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events</h2>
         <EventSearchTile
-          handlerFunction={this.handleChange}
           handleSearch={this.handleSearch}
         />
-        <div className="large-12 medium-12 small-12">
+        <div className="pagination large-12 medium-12 small-12">
+          <span className="row pagination-buttons">
+            <div className="past-button-div">
+              {pastButton}
+            </div>
+            <div className="next-button-div">
+              {nextButton}
+            </div>
+          </span>
+        </div>
+        <div className="large-12 medium-12 small-12" id="search-results-div">
           <div className="row events-tiles">
             {events}
           </div>
+        </div>
+        <div className="pagination large-12 medium-12 small-12">
+          <span className="row bottom-pagination-buttons">
+            <div className="past-button-div">
+              {pastButton}
+            </div>
+            <div className="next-button-div">
+              {nextButton}
+            </div>
+          </span>
         </div>
       </div>
     )

@@ -117,7 +117,7 @@ class EventSearchTile extends Component {
             </span>
           <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
           <p id="search-limit">
-            Results limited to first 100
+            Limited to first 100 results, in pages of 10
           </p>
         </form>
       </div>

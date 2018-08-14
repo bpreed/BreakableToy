@@ -96,3 +96,24 @@ iframe {
   font-style: italic;
   font-size: 1.1rem;
 }
+
+.pagination {
+  max-width: 45rem;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pagination-buttons {
+  display: flex;
+}
+
+.bottom-pagination-buttons {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.next-button-div {
+  margin-left: auto;
+}
