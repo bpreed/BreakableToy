@@ -1,5 +1,5 @@
 body {
-  background-image: url("/assets/site_background.jpg");
+  background-image: url("https://s3.amazonaws.com/bpreed-breakable-toy-production/site_background.jpg");
   background-attachment: fixed;
   background-size: cover;
 }
