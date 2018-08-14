@@ -21,6 +21,7 @@
   padding-top: 1rem;
   padding-left: 2rem;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .search-top-row {
@@ -97,4 +98,16 @@ select {
   margin-bottom: 0rem;
   margin-top: -1rem;
   margin-left: .2rem;
+}
+
+#search-results-div {
+  margin-bottom: -1rem;
+}
+
+#next-button {
+  margin-bottom: 0rem;
+}
+
+#past-button {
+  margin-bottom: 0rem;
 }
