@@ -11,11 +11,13 @@ class EventSearchTile extends Component {
       region: '',
       name: '',
       types: [],
-      year: ''
+      year: '',
+      // loadingDiv: <div className="lds-space"></div>
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleMultiSelect = this.handleMultiSelect.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.delayState = this.delayState.bind(this)
   }
 
   // Sets state based on non-multi-select field input
@@ -25,6 +27,14 @@ class EventSearchTile extends Component {
     })
   }
 
+  // delayState() {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       loadingDiv: <div className="lds-space"></div>
+  //     })
+  //   }, 7000);
+  // }
+
   // Sets state based on multi-select input
   handleMultiSelect(optionsList){
     this.setState(optionsList)
@@ -33,6 +43,7 @@ class EventSearchTile extends Component {
   // Invokes handleSearch function from EventsIndexContainer
   handleSubmit(event){
     event.preventDefault()
+
     let formPayload = {
       states: this.state.states,
       region: this.state.region,
@@ -41,9 +52,16 @@ class EventSearchTile extends Component {
       year: this.state.year
     }
     this.props.handleSearch(formPayload)
+    // this.setState({ loadingDiv: <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> }, this.delayState())
   }
 
   render() {
+    let inSearchIcon
+    if (this.props.searchInProgress) {
+      inSearchIcon = <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    } else {
+      inSearchIcon = <div className="lds-space"></div>
+    }
     // Initializes Year select field
     let yearSelect
     yearSelect = <div>
@@ -115,10 +133,13 @@ class EventSearchTile extends Component {
               <div className="large-6 medium-6 small-12">
               </div>
             </span>
-          <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
-          <p id="search-limit">
-            Limited to first 100 results, in pages of 10
-          </p>
+          <span className="row search-fourth-row">
+            <p id="search-limit">
+              Limited to first 20 results; please be patient!
+            </p>
+            <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
+            {inSearchIcon}
+          </span>
         </form>
       </div>
     )

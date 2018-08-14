@@ -115,7 +115,7 @@ class EventTile extends Component {
                 {EventWeatherSummary}
               </div>
               <div className="event-detail event-weather-details">
-                High: {EventWeatherHigh}F / Low: {EventWeatherLow}F / Chance of precipitation: {EventPrecipProb * 100}%
+                High: {EventWeatherHigh}F / Low: {EventWeatherLow}F / Chance of precipitation: {EventPrecipProb}%
               </div>
             </div>
           </div>
