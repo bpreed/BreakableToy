@@ -28,12 +28,10 @@ class Api::V1::Search::EventsController < ApplicationController
       end
     end
 
-    # Checks if there are fewer than 100 events in return array and if so, fetches additional events if available
+    # If fewer than 100 events in event_results, fetches additional events if available
     while events_count > ((events_page * 100) + 99)
-      binding.pry
       events_page += 1
       if events_count > 100 && event_results.length < 100
-        binding.pry
 
         new_search_string = BikeRegResult.new(
                               states: params[:states],
@@ -59,7 +57,6 @@ class Api::V1::Search::EventsController < ApplicationController
         break
       end
     end
-    binding.pry
 
     # Checks if user is signed in
     if current_user
