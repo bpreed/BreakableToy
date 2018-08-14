@@ -82,7 +82,7 @@ class EventTile extends Component {
     return (
       <div className="small-12 event-tile">
         <span className="event-header">
-          <div className="event-detail event-types event-name small-9 large-9">
+          <div className="event-detail event-types small-9 large-9">
             {types}
           </div>
           {favoriteButton}
@@ -91,7 +91,7 @@ class EventTile extends Component {
           <div className="event-detail event-name small-9 large-9">{EventName}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div>
         </span>
           <span className="bottom-event-tile">
-          <div className="event-detail event-name small-7 large-7">
+          <div className="event-detail event-address small-7 large-7">
             {addressDiv}
             <div className="event-detail event-location">
               {EventCity}, {EventState}
@@ -100,10 +100,10 @@ class EventTile extends Component {
               Event Registration</a>
             </div>
             <div className="event-detail event-reg-open">
-              Registration opens: {regOpen}
+              Opens: {regOpen}
             </div>
             <div className="event-detail event-reg-close">
-              Registration closes: {regClose}
+              Closes: {regClose}
             </div>
           </div>
           <div className="event-detail event-map small-5 large-5">

@@ -26,7 +26,7 @@ class TeamsController < ApplicationController
       flash[:notice] = "Team added successfully"
       redirect_to teams_path
     else
-      errors = team.errors.full_messages
+      @errors = @team.errors.full_messages
       render :new
     end
   end

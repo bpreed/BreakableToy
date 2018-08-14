@@ -75,37 +75,50 @@ class EventSearchTile extends Component {
     return (
       <div className="large-12 medium-12 small-12 search-tile">
         <form id="search-form" className="search-form" onSubmit={this.handleSubmit}>
-          <h3 id="search-title">Search Criteria</h3>
-          <h5 id="search-instructions">All fields optional. Selected region takes precedence over selected state(s).</h5>
+          <h3 id="search-title">
+            Search Criteria
+          </h3>
+          <h5 id="search-instructions">
+            All fields optional. Selected region takes precedence over selected state(s).
+          </h5>
             <span className="row search-top-row">
-              <div className="region-select large-5 medium-5 small-12">
+              <div className="region-select large-6 medium-6 small-12">
                 Select a region:
                 {regionSelect}
               </div>
-              <div className="multi-select-states large-5 medium-5 small-12">
+              <div className="multi-select-states large-6 medium-6 small-12">
                 Select state(s):
                 <MultiSelectTile
-                optionsList={STATES}
-                onSelect={this.handleMultiSelect}/>
+                  optionsList={STATES}
+                  onSelect={this.handleMultiSelect}
+                />
               </div>
             </span>
             <span className="row search-second-row">
-              <div className="year-select large-5 medium-5 small-12">
+              <div className="year-select large-6 medium-6 small-12">
                 Select year (future events if blank):
                 {yearSelect}
               </div>
-              <div className="multi-select-types large-5 medium-5 small-12">
-              Select event type(s):
-              <MultiSelectTile
-              optionsList={EVENTTYPES}
-              onSelect={this.handleMultiSelect}/>
+              <div className="multi-select-types large-6 medium-6 small-12">
+                Select event type(s):
+                <MultiSelectTile
+                  optionsList={EVENTTYPES}
+                  onSelect={this.handleMultiSelect}
+                />
               </div>
             </span>
-            <div className="name-search large-5 medium-5 small-12">
-              Event Name:
-              <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
-            </div>
+            <span className="row search-third-row">
+              <div className="name-search large-6 medium-6 small-12">
+                Event Name:
+                <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+              </div>
+              <div className="large-6 medium-6 small-12">
+              </div>
+            </span>
           <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
+          <p id="search-limit">
+            Results limited to first 100
+          </p>
         </form>
       </div>
     )

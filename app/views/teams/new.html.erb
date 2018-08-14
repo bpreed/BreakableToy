@@ -1,8 +1,10 @@
 <%- if current_user -%>
   <% if @errors %>
-    <% @errors.each do |error| %>
-      <%= error %><br>
-    <% end %>
+    <div class="form-errors">
+      <% @errors.each do |error| %>
+        <%= error %><br>
+      <% end %>
+    </div>
   <% end %>
 
   <h2 class="devise-form-header">Add New Team</h2>

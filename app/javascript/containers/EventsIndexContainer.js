@@ -54,14 +54,7 @@ class EventsIndexContainer extends Component {
     if (this.state.events.length == 0) {
       events = <div className="no-results">No current search results</div>
     } else {
-      events = this.state.events.filter(function(bikeEvent) {
-        let date_string = bikeEvent["EventDate"].substring(6, 19)
-        let date = new Date(parseInt(date_string))
-        if (bikeEvent["EventDate"] == null || date < new Date()) {
-          return false;
-        }
-        return true;
-      }).map((bike_event) => {
+      events = this.state.events.map((bike_event) => {
         return (
           <EventTile
             key={bike_event.EventId}
@@ -74,7 +67,7 @@ class EventsIndexContainer extends Component {
 
     return (
       <div>
-        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events Based On Your Search</h2>
+        <h2 className="names-in-rounded-box page-header">Upcoming Bicycle Events</h2>
         <EventSearchTile
           handlerFunction={this.handleChange}
           handleSearch={this.handleSearch}
