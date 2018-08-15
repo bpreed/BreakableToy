@@ -67,7 +67,14 @@ class EventTile extends Component {
   }
 
   render() {
-    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+    const { EventId, Distance, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+
+    let distanceDiv
+    if (Distance != 0) {
+      distanceDiv = `${Distance.toFixed(0)} miles from search`
+    } else {
+      distanceDiv = ""
+    }
 
     // Displays address field only if present
     let addressDiv;
@@ -123,6 +130,18 @@ class EventTile extends Component {
             <div className="event-detail event-location">
               {EventCity}, {EventState}
             </div>
+            <div className="event-detail event-distance">
+              {distanceDiv}
+            </div>
+            <div className="event-detail event-weather">
+              <p id="weather-header">Expected weather:</p>
+              <div className="event-detail event-weather-summary">
+                {this.state.weather.eventWeatherSummary}
+              </div>
+              <div className="event-detail event-weather-details">
+                High: {this.state.weather.eventWeatherHigh}F / Low: {this.state.weather.eventWeatherLow}F / Chance of precipitation: {this.state.weather.eventPrecipProb}%
+              </div>
+            </div>
             <div className="event-detail event-url"><a href={`${EventUrl}`} target="blank">
               Event Registration</a>
             </div>
@@ -131,15 +150,6 @@ class EventTile extends Component {
             </div>
             <div className="event-detail event-reg-close">
               Closes: {regClose}
-            </div>
-            <div className="event-detail event-weather">
-              <p>Expected weather:</p>
-              <div className="event-detail event-weather-summary">
-                {this.state.weather.eventWeatherSummary}
-              </div>
-              <div className="event-detail event-weather-details">
-                High: {this.state.weather.eventWeatherHigh}F / Low: {this.state.weather.eventWeatherLow}F / Chance of precipitation: {this.state.weather.eventPrecipProb}%
-              </div>
             </div>
           </div>
           <div className="event-detail event-map small-5 large-5">

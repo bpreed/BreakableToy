@@ -12,15 +12,23 @@ class EventSearchTile extends Component {
       name: '',
       types: [],
       year: '',
+      location: '',
+      distance: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleMultiSelect = this.handleMultiSelect.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.delayState = this.delayState.bind(this)
   }
 
   // Sets state based on non-multi-select field input
   handleChange(event){
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleLocationChange(event){
+
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -40,7 +48,9 @@ class EventSearchTile extends Component {
       region: this.state.region,
       name: this.state.name,
       types: this.state.types,
-      year: this.state.year
+      year: this.state.year,
+      location: this.state.location,
+      distance: this.state.distance,
     }
     this.props.handleSearch(formPayload)
   }
@@ -89,43 +99,49 @@ class EventSearchTile extends Component {
           <h5 id="search-instructions">
             All fields optional. Selected region takes precedence over selected state(s).
           </h5>
-            <span className="row search-top-row">
-              <div className="region-select large-6 medium-6 small-12">
-                Select a region:
-                {regionSelect}
-              </div>
-              <div className="multi-select-states large-6 medium-6 small-12">
-                Select state(s):
-                <MultiSelectTile
-                  optionsList={STATES}
-                  onSelect={this.handleMultiSelect}
-                />
-              </div>
-            </span>
-            <span className="row search-second-row">
-              <div className="year-select large-6 medium-6 small-12">
-                Select year (future events if blank):
-                {yearSelect}
-              </div>
-              <div className="multi-select-types large-6 medium-6 small-12">
-                Select event type(s):
-                <MultiSelectTile
-                  optionsList={EVENTTYPES}
-                  onSelect={this.handleMultiSelect}
-                />
-              </div>
-            </span>
-            <span className="row search-third-row">
-              <div className="name-search large-6 medium-6 small-12">
-                Event Name:
-                <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
-              </div>
-              <div className="large-6 medium-6 small-12">
-              </div>
-            </span>
+          <span className="row search-top-row">
+            <div className="name-search large-3 medium-3 small-12">
+              Event Name:
+              <input className="search-input" type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+            </div>
+            <div className="location-search large-6 medium-6 small-12">
+              Near Location:
+              <input type='text' name='location' value={this.state.location} onChange={this.handleChange} />
+            </div>
+            <div className="distance-search large-3 medium-3 small-12">
+              Within [X] Miles:
+              <input type='text' name='distance' value={this.state.distance} onChange={this.handleChange} />
+            </div>
+          </span>
+          <span className="row search-second-row">
+            <div className="year-select large-6 medium-6 small-12">
+              Select year (future events if blank):
+              {yearSelect}
+            </div>
+            <div className="multi-select-types large-6 medium-6 small-12">
+              Select event type(s):
+              <MultiSelectTile
+                optionsList={EVENTTYPES}
+                onSelect={this.handleMultiSelect}
+              />
+            </div>
+          </span>
+          <span className="row search-third-row">
+            <div className="region-select large-6 medium-6 small-12">
+              Select a region:
+              {regionSelect}
+            </div>
+            <div className="multi-select-states large-6 medium-6 small-12">
+              Select state(s):
+              <MultiSelectTile
+                optionsList={STATES}
+                onSelect={this.handleMultiSelect}
+              />
+            </div>
+          </span>
           <span className="row search-fourth-row">
             <p id="search-limit">
-              Limited to first 20 results; five per page
+              Limited to first 20 results, sorted by date
             </p>
             <button type="submit" id="search-button" onSubmit={this.handleSubmit} value="Submit">Search</button>
             {inSearchIcon}

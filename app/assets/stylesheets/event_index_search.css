@@ -26,6 +26,7 @@
 
 .search-top-row {
   display: inline-flex;
+  margin-bottom: -1rem;
 }
 
 .search-second-row {
@@ -60,6 +61,19 @@
   max-width: 45rem;
 }
 
+.location-search {
+  padding-right: 1rem;
+}
+
+.distance-search {
+  padding-right: 2rem;
+}
+
+input[type="text"] {
+  height: 2rem;
+  /* margin-bottom: 0rem; */
+}
+
 select {
   margin: auto;
   font-size: 12px;
@@ -72,6 +86,7 @@ select {
   width: 100%;
   outline: none;
   display: inline-block;
+  height: 2rem;
 }
 
 #search-button {
