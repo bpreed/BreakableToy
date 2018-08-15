@@ -62,6 +62,10 @@
 }
 
 .location-search {
+  padding-right: 1rem;
+}
+
+.distance-search {
   padding-right: 2rem;
 }
 

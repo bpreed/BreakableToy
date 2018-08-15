@@ -17,7 +17,8 @@ class Api::V1::Search::EventsController < ApplicationController
                       name: params[:name],
                       eventtype: params[:types],
                       year: params[:year],
-                      loc: location_string
+                      loc: location_string,
+                      distance: params[:distance]
                     )
     # Makes outside API call using search parameters
     events = search_string.matching_events
