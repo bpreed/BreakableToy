@@ -3,12 +3,21 @@ class Api::V1::Search::EventsController < ApplicationController
 
   def create
     # Creates BikeRegResult poro via HTTParty gem with specified search parameters
+    location_string = ""
+    if params[:location] != ""
+      geocode_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:location].gsub(', ', '+').gsub(',', '+').gsub(' ', '+')}&key=#{ENV["GEOCODE_API"]}"
+      geo_data = JSON.parse(open(geocode_url).read)
+      lat = geo_data["results"][0]["geometry"]["location"]["lat"]
+      lng = geo_data["results"][0]["geometry"]["location"]["lng"]
+      location_string = "#{lat}|#{lng}"
+    end
     search_string = BikeRegResult.new(
                       states: params[:states],
                       region: params[:region],
                       name: params[:name],
                       eventtype: params[:types],
-                      year: params[:year]
+                      year: params[:year],
+                      loc: location_string
                     )
     # Makes outside API call using search parameters
     events = search_string.matching_events

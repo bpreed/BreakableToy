@@ -67,7 +67,15 @@ class EventTile extends Component {
   }
 
   render() {
-    const { EventId, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+    const { EventId, Distance, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+    debugger
+
+    let distanceDiv
+    if (Distance != 0) {
+      distanceDiv = `${Distance.toFixed(0)} miles from search`
+    } else {
+      distanceDiv = ""
+    }
 
     // Displays address field only if present
     let addressDiv;
@@ -122,6 +130,9 @@ class EventTile extends Component {
             {addressDiv}
             <div className="event-detail event-location">
               {EventCity}, {EventState}
+            </div>
+            <div className="event-detail event-distance">
+              {distanceDiv}
             </div>
             <div className="event-detail event-url"><a href={`${EventUrl}`} target="blank">
               Event Registration</a>
