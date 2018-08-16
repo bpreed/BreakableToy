@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import FavoriteButton from '../components/FavoriteButton'
 import JoinTeamButton from '../components/JoinTeamButton'
 
 class TeamTile extends Component {

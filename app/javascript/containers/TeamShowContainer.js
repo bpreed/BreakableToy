@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-// import TeamTile from '../components/TeamTile'
+import JoinTeamButton from '../components/JoinTeamButton'
 import EventTile from '../components/EventTile'
 
 class TeamShowContainer extends Component {
@@ -49,9 +49,13 @@ class TeamShowContainer extends Component {
     let captainId
     let upcomingEvents;
     let pastEvents;
+    let joinButton;
 
     if (this.state.team != null) {
 
+      joinButton = <JoinTeamButton
+                      teamInfo={this.state.team}
+                    />
       teamName = this.state.team.name
       teamPhoto = this.state.team.photo
       captainId = this.state.team.captain.id
@@ -128,6 +132,9 @@ class TeamShowContainer extends Component {
           </div>
           <div className="team-profile-photo">
             <img src={teamPhoto}/>
+          </div>
+          <div id="team-join-button">
+            {joinButton}
           </div>
           <div className="team-members">
             <div className="members-label">
