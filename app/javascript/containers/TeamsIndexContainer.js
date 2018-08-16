@@ -50,7 +50,7 @@ class TeamsIndexContainer extends Component {
         <h2 className="names-in-rounded-box page-header">All Teams</h2>
         <div className="large-12 medium-12 small-12">
           <div id="create-team">
-            <a href="/teams/new" className="create-team">Create A Team</a>
+            <a href="/teams/new" className="button">Create A Team</a>
           </div>
           <div className="row teams-tiles">
           <div id="team-index-header" className="small-12 medium-12 large-12">

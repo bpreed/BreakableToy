@@ -113,6 +113,9 @@
 
 #create-team {
   text-align: center;
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .join-button {
@@ -185,10 +188,16 @@
   margin-right: .5rem;
   margin-top: auto;
   margin-bottom: auto;
+  background-color: #763276;
+  border-radius: 5px;
 }
 
 .nobr {
   display: inline-block;
+}
+
+.nobr > a {
+  color: #fdf6f6;
 }
 
 .membership-photo {
@@ -213,6 +222,7 @@
 .membership-name {
   margin-top: auto;
   margin-bottom: auto;
+  padding: .2rem;
 }
 
 .team-tile-membership-photo{
@@ -267,6 +277,11 @@
 #team-index-header-span{
   display: flex;
   font-size: 1.5rem;
+  background-color: #fdf6f6;
+  margin-bottom: .5rem;
+  border: 1px;
+  border-color: black;
+  border-style: solid;
 }
 
 .team-tile-div{
@@ -277,8 +292,9 @@
   border-left: 0px;
   border-color: black;
   border-style: solid;
+  background-color: #fdf6f6;
+  margin-bottom: .5rem;
 }
 
 #team-index-header{
-  background-color: #fdf6f6;
 }
