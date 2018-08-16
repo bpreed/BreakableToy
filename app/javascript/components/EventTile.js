@@ -70,7 +70,7 @@ class EventTile extends Component {
     const { EventId, Distance, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
 
     let distanceDiv
-    if (Distance != 0) {
+    if (Distance && Distance != 0) {
       distanceDiv = `${Distance.toFixed(0)} miles from search`
     } else {
       distanceDiv = ""
