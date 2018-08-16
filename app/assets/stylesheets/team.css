@@ -86,14 +86,15 @@
 
 .team-captain {
   font-weight: 400;
+  font-size: 1.35rem;
 }
 
 .team-members {
-  font-weight: 500;
-  align-items: center;
   font-size: 1.1rem;
   text-align: center;
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #team-photo {
@@ -115,19 +116,19 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-size: .9rem;
+  font-size: 1.2rem;
   font-weight: 300;
 }
 
 #edit-team-link {
   text-align: center;
-  margin-bottom: 1rem;
   font-style: italic;
   font-size: .9rem;
 }
 
 .team-profile-photo {
   margin: auto;
+  margin-top: 1rem;
   max-width: 150px;
 }
 
@@ -139,15 +140,15 @@
 .captain-label {
   margin-left: .4rem;
   display: inline;
+  font-style: italic;
   font-size: .8rem;
 }
 
 #team-info {
-  max-width: 350px;
+  max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #fdf6f6;
-  background:rgba(255,255,255,0.5);
   border-radius: 10px;
   margin-top: 1rem;
 }
@@ -166,5 +167,56 @@
 }
 
 #team-join-button .join-button {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.captain-detail {
+  max-width: 5rem;
+  font-weight: bold;
+}
+
+.captain-div {
+  margin-bottom: .5rem;
+}
+
+.member-detail {
+  margin-right: .5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nobr {
+  display: inline-block;
+}
+
+.membership-photo {
+  max-width: 1.5rem;
+  border-radius: 50%;
+}
+
+.members-list {
+  padding-bottom: .5rem;
+}
+
+.team-show-description{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.description-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.membership-name {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.team-tile-membership-photo{
+  max-width: 2rem;
+}
+
+.team-tile-membership-name{
+  font-size: 1.75rem;
 }

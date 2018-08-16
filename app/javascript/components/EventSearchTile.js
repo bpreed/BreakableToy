@@ -28,7 +28,6 @@ class EventSearchTile extends Component {
   }
 
   handleLocationChange(event){
-
     this.setState({
       [event.target.name]: event.target.value
     })

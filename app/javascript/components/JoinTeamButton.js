@@ -82,7 +82,7 @@ class JoinTeamButton extends Component {
   render(){
     let membershipButton = null
     if(this.state.membership == false) {
-      membershipButton = <a onClick={this.recordFavorite}>Join team!</a>
+      membershipButton = <a onClick={this.recordFavorite}>Member<i className="far fa-star"></i></a>
     } else {
       membershipButton = <a onClick={this.recordFavorite}>Member<i className="fas fa-star"></i></a>
     }

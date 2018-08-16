@@ -84,12 +84,12 @@ class FavoriteButton extends Component {
     // Displays messages based on favorited or not
     let favoriteButton = null
     if(this.state.favorited == false) {
-      favoriteButton = <a onClick={this.recordFavorite}>Favorite me!</a>
+      favoriteButton = <a onClick={this.recordFavorite}>Favorited<i className="far fa-star"></i></a>
     } else {
       favoriteButton = <a onClick={this.recordFavorite}>Favorited<i className="fas fa-star"></i></a>
     }
     return (
-      <div className="event-detail favorite-button small-3 large-3">
+      <div className="event-detail favorite-button">
         {favoriteButton}
       </div>
     );

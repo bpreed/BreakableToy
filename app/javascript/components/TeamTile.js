@@ -8,7 +8,6 @@ class TeamTile extends Component {
   }
 
   render() {
-
     const { name, description, captain, photo, members } = this.props.teamInfo
 
     return (
@@ -22,10 +21,13 @@ class TeamTile extends Component {
               </div>
               <br />
               <div className="team-detail team-captain">
-                <span id="captain">
+                <div id="captain">
                   Captain:
-                </span>
-                <Link to={`/users/${this.props.teamInfo.captain.username}`}>{captain.username}</Link>
+                </div>
+                <Link to={`/users/${captain.username}`} className="team-tile-membership-name">
+                  <img src={`${captain.profile_photo.url}`} className="team-tile-membership-photo"/>
+                  {captain.username}
+                </Link>
               </div>
             </span>
           </div>
