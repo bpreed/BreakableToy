@@ -53,7 +53,18 @@ class TeamsIndexContainer extends Component {
             <a href="/teams/new" className="create-team">Create A Team</a>
           </div>
           <div className="row teams-tiles">
-            {teams}
+          <div id="team-index-header" className="small-12 medium-12 large-12">
+            <span id="team-index-header-span">
+              <div id="team-photo-header-div" className="large-1"></div>
+              <div id="team-name-header-div" className="large-3">Team</div>
+              <div id="team-description-header-div" className="large-4">Description</div>
+              <div id="team-captain-header-div" className="large-2">Captain</div>
+              <div id="team-join-header-div" className="large-2">Join</div>
+            </span>
+            <span id="team-index-teams-list">
+              {teams}
+            </span>
+          </div>
           </div>
         </div>
       </div>
