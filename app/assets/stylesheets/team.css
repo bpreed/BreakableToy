@@ -285,3 +285,13 @@
   border-color: #763276;
   border-style: solid;
 }
+
+
+@media only screen and (max-width: 650px) {
+  .team-photo-header-div {
+    display: none;
+  }
+  #team-photo-header-div {
+    display: none;
+  }
+}

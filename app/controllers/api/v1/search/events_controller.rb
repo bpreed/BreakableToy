@@ -30,11 +30,13 @@ class Api::V1::Search::EventsController < ApplicationController
 
     # Adds only upcoming events to array to be returned
     events_array.each do |event|
-      next if event["EventDate"] == nil
-      date_trim = event["EventDate"][6...19]
-      date = Time.at(date_trim.to_i/1000).to_s
-      if date > Time.now
-        event_results << event
+      if event_results.length < 20
+        next if event["EventDate"] == nil
+        date_trim = event["EventDate"][6...19]
+        date = Time.at(date_trim.to_i/1000).to_s
+        if date > Time.now
+          event_results << event
+        end
       end
     end
 
@@ -53,11 +55,15 @@ class Api::V1::Search::EventsController < ApplicationController
       new_events_array = new_events["MatchingEvents"]
 
       new_events_array.each do |event|
-        next if event["EventDate"] == nil
-        date_trim = event["EventDate"][6...19]
-        date = Time.at(date_trim.to_i/1000).to_s
-        if date > Time.now
-          event_results << event
+        if event_results.length < 20
+          next if event["EventDate"] == nil
+          date_trim = event["EventDate"][6...19]
+          date = Time.at(date_trim.to_i/1000).to_s
+            if date > Time.now
+              event_results << event
+            end
+        else
+          break
         end
       end
     end
