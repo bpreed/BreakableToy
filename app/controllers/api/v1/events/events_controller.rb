@@ -23,8 +23,8 @@ class Api::V1::Events::EventsController < ApplicationController
 
     weather_data = JSON.parse(open(weather_url).read)
 
-    event["EventWeatherHigh"] = weather_data["daily"]["data"][0]["temperatureHigh"]
-    event["EventWeatherLow"] = weather_data["daily"]["data"][0]["temperatureLow"]
+    event["EventWeatherHigh"] = weather_data["daily"]["data"][0]["temperatureHigh"].to_i
+    event["EventWeatherLow"] = weather_data["daily"]["data"][0]["temperatureLow"].to_i
     event["EventWeatherSummary"] = weather_data["daily"]["data"][0]["summary"]
     event["EventPrecipProb"] = (weather_data["daily"]["data"][0]["precipProbability"] * 100).to_i
     # Returns found events and results of user check

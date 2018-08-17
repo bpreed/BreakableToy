@@ -96,7 +96,7 @@ class EventSearchTile extends Component {
             Search Criteria
           </h3>
           <h5 id="search-instructions">
-            All fields optional. Selected region takes precedence over selected state(s).
+            All fields optional. Selected region overrides location or state criteria.
           </h5>
           <span className="row search-top-row">
             <div className="name-search large-3 medium-3 small-12">

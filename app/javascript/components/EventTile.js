@@ -221,7 +221,7 @@ class EventTile extends Component {
           <div className="event-detail event-name small-9 large-9">{EventName}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div>
         </span>
           <span className="bottom-event-tile">
-          <div className="event-detail event-address small-7 large-7">
+          <div className="event-detail event-information small-12 large-7">
             {addressDiv}
             <div className="event-detail event-location">
               {EventCity}, {EventState}

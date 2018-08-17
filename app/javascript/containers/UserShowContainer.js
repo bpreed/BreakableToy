@@ -6,7 +6,8 @@ class UserShowContainer extends Component {
     super(props)
     this.state = {
       events: [],
-      activeUser: null
+      activeUser: null,
+      user: null
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -32,12 +33,16 @@ class UserShowContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ events: body.events, activeUser: body })
+      this.setState({ events: body.events, user: body, activeUser: body.authenticated_user })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
+    let emailShow = null
+    if (this.state.activeUser && (this.state.activeUser.username == this.state.user.username)) {
+      emailShow = this.state.user.email
+    }
     let upcomingEvents;
     let pastEvents;
     // Displays 'no results' message if no events returned from Fetch
@@ -76,16 +81,16 @@ class UserShowContainer extends Component {
     }
 
     let profileInfo;
-    if (this.state.activeUser) {
+    if (this.state.user) {
       profileInfo = <div className="profile-div">
         <span className="user-profile-info">
-          <img className="user-profile-photo" src={this.state.activeUser.profile_photo.url}/>
+          <img className="user-profile-photo" src={this.state.user.profile_photo.url}/>
           <div className="user-email-username">
             <div className="username">
-              {this.state.activeUser.username}
+              {this.state.user.username}
             </div>
             <div className="email">
-              {this.state.activeUser.email}
+              {emailShow}
             </div>
             <a className="profile-edit" href={`/users/edit`}>Edit</a>
           </div>

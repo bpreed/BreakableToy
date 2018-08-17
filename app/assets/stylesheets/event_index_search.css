@@ -76,8 +76,7 @@ input[type="text"] {
 
 select {
   margin: auto;
-  font-size: 12px;
-  width: 20px;
+  font-size: .9rem;
   display: inline-block;
   cursor: pointer;
   position: relative;

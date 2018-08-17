@@ -3,7 +3,6 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find_by(username: params[:id])
-    authenticated_user = current_user
     render json: user, serializer: UserShowSerializer
   end
 

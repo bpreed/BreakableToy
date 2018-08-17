@@ -4,12 +4,16 @@ class Api::V1::Search::EventsController < ApplicationController
   def create
     # Creates BikeRegResult poro via HTTParty gem with specified search parameters
     location_string = ""
+    distance_measure = params[:distance]
     if params[:location] != ""
       geocode_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{params[:location].gsub(', ', '+').gsub(',', '+').gsub(' ', '+')}&key=#{ENV["GEOCODE_API"]}"
       geo_data = JSON.parse(open(geocode_url).read)
       lat = geo_data["results"][0]["geometry"]["location"]["lat"]
       lng = geo_data["results"][0]["geometry"]["location"]["lng"]
       location_string = "#{lat}|#{lng}"
+      if params[:distance] == ""
+        distance_measure = 200
+      end
     end
     search_string = BikeRegResult.new(
                       states: params[:states],
@@ -18,7 +22,7 @@ class Api::V1::Search::EventsController < ApplicationController
                       eventtype: params[:types],
                       year: params[:year],
                       loc: location_string,
-                      distance: params[:distance]
+                      distance: distance_measure
                     )
     # Makes outside API call using search parameters
     events = search_string.matching_events
@@ -30,11 +34,13 @@ class Api::V1::Search::EventsController < ApplicationController
 
     # Adds only upcoming events to array to be returned
     events_array.each do |event|
-      next if event["EventDate"] == nil
-      date_trim = event["EventDate"][6...19]
-      date = Time.at(date_trim.to_i/1000).to_s
-      if date > Time.now
-        event_results << event
+      if event_results.length < 20
+        next if event["EventDate"] == nil
+        date_trim = event["EventDate"][6...19]
+        date = Time.at(date_trim.to_i/1000).to_s
+        if date > Time.now
+          event_results << event
+        end
       end
     end
 
@@ -53,11 +59,15 @@ class Api::V1::Search::EventsController < ApplicationController
       new_events_array = new_events["MatchingEvents"]
 
       new_events_array.each do |event|
-        next if event["EventDate"] == nil
-        date_trim = event["EventDate"][6...19]
-        date = Time.at(date_trim.to_i/1000).to_s
-        if date > Time.now
-          event_results << event
+        if event_results.length < 20
+          next if event["EventDate"] == nil
+          date_trim = event["EventDate"][6...19]
+          date = Time.at(date_trim.to_i/1000).to_s
+            if date > Time.now
+              event_results << event
+            end
+        else
+          break
         end
       end
     end

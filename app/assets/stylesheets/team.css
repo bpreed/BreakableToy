@@ -231,7 +231,7 @@
 }
 
 .team-tile-membership-name{
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .team-name-header-div{
@@ -284,4 +284,14 @@
   border: 3px;
   border-color: #763276;
   border-style: solid;
+}
+
+
+@media only screen and (max-width: 650px) {
+  .team-photo-header-div {
+    display: none;
+  }
+  #team-photo-header-div {
+    display: none;
+  }
 }
