@@ -3,7 +3,7 @@ class Api::V1::TeamsController < ApplicationController
   before_action :authorize_user
 
   def index
-    teams = Team.all
+    teams = Team.all.order(name: :asc)
     render json: teams
   end
 

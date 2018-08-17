@@ -69,7 +69,8 @@
 }
 
 .teams-tiles {
-  max-width: 30rem;
+  max-width: 60rem;
+  margin-top: 1rem;
 }
 
 .team-name {
@@ -98,9 +99,11 @@
 }
 
 #team-photo {
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 70px;
+  max-width: 70px;
   border-radius: 10px;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
 }
 
 #captain {
@@ -110,12 +113,14 @@
 
 #create-team {
   text-align: center;
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .join-button {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   font-size: 1.2rem;
   font-weight: 300;
 }
@@ -183,10 +188,16 @@
   margin-right: .5rem;
   margin-top: auto;
   margin-bottom: auto;
+  background-color: #763276;
+  border-radius: 5px;
 }
 
 .nobr {
   display: inline-block;
+}
+
+.nobr > a {
+  color: #fdf6f6;
 }
 
 .membership-photo {
@@ -211,12 +222,66 @@
 .membership-name {
   margin-top: auto;
   margin-bottom: auto;
+  padding: .2rem;
 }
 
 .team-tile-membership-photo{
   max-width: 2rem;
+  border-radius: 50%;
 }
 
 .team-tile-membership-name{
   font-size: 1.75rem;
+}
+
+.team-name-header-div{
+  font-size: 1.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: .5rem;
+}
+
+.team-description-header-div{
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.1rem;
+  padding-right: .5rem
+}
+
+.team-captain-header-div{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.team-join-header-div{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#team-index-header-span{
+  display: flex;
+  font-size: 1.5rem;
+  background-color: #fdf6f6;
+  margin-bottom: .5rem;
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.team-tile-div{
+  display: flex;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-right: 0px;
+  border-left: 0px;
+  border-color: black;
+  border-style: solid;
+  background-color: #fdf6f6;
+  margin-bottom: .5rem;
+}
+
+.team-profile-photo-image{
+  border: 3px;
+  border-color: #763276;
+  border-style: solid;
 }

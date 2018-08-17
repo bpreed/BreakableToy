@@ -11,35 +11,31 @@ class TeamTile extends Component {
     const { name, description, captain, photo, members } = this.props.teamInfo
 
     return (
-      <div className="small-12 event-tile">
-        <span className="team-header">
-          <div className="team-detail small-8 large-8">
-            <Link to={`/teams/${this.props.teamInfo.id}`} className="team-name">{name}</Link>
-            <span className="bottom-team-tile">
-              <div className="team-detail team-description">
-                {description}
-              </div>
-              <br />
-              <div className="team-detail team-captain">
-                <div id="captain">
-                  Captain:
-                </div>
-                <Link to={`/users/${captain.username}`} className="team-tile-membership-name">
-                  <img src={`${captain.profile_photo.url}`} className="team-tile-membership-photo"/>
-                  {captain.username}
-                </Link>
-              </div>
-            </span>
-          </div>
-          <div className="team-detail team-join-button small-4 large-4">
-            <JoinTeamButton
-              teamInfo={this.props.teamInfo}
-            />
-            <div className="team-detail team-photo small-4 large-4">
-              <img src={photo} id="team-photo"/>
-            </div>
-          </div>
-        </span>
+      <div className="team-tile-div">
+        <div className="team-photo-header-div large-1">
+          <Link to={`teams/${this.props.teamInfo.id}`}>
+            <img src={photo} id="team-photo"/>
+          </Link>
+        </div>
+        <div className="team-name-header-div large-3">
+          <Link to={`teams/${this.props.teamInfo.id}`}>
+            {name}
+          </Link>
+        </div>
+        <div className="team-description-header-div large-4">
+          {description}
+        </div>
+        <div className="team-captain-header-div large-2">
+          <Link to={`/users/${captain.username}`} className="team-tile-membership-name">
+            <img src={`${captain.profile_photo.url}`} className="team-tile-membership-photo"/>
+            {captain.username}
+          </Link>
+        </div>
+        <div className="team-join-header-div large-2">
+          <JoinTeamButton
+            teamInfo={this.props.teamInfo}
+          />
+        </div>
       </div>
     )
   }

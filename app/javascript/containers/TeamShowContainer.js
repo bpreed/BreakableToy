@@ -145,7 +145,7 @@ class TeamShowContainer extends Component {
           {joinButton}
           </div>
           <div className="team-profile-photo">
-            <img src={teamPhoto}/>
+            <img src={teamPhoto} className="team-profile-photo-image"/>
           </div>
           <div className="team-show-description">
             <div className="description-label">
