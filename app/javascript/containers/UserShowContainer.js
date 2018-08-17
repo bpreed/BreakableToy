@@ -54,7 +54,7 @@ class UserShowContainer extends Component {
         return (
           <EventTile
             key={bike_event.EventId}
-            activeUser={this.state.activeUser.id}
+            activeUser={this.state.activeUser}
             eventInfo={bike_event}
           />
         )
@@ -68,7 +68,7 @@ class UserShowContainer extends Component {
         return (
           <EventTile
             key={bike_event.EventId}
-            activeUser={this.state.activeUser.id}
+            activeUser={this.state.activeUser}
             eventInfo={bike_event}
           />
         )

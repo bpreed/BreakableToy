@@ -8,8 +8,14 @@ class EventTile extends Component {
       favoriteRecord: null,
       latitude: null,
       longitude: null,
-      weather: {}
+      weather: {},
+      teamAddClicked: false,
+      team: null,
+      successMessage: null
     }
+    this.handleAddTeamClick=this.handleAddTeamClick.bind(this)
+    this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -34,6 +40,52 @@ class EventTile extends Component {
       this.setState({ weather: { eventWeatherHigh: body.EventWeatherHigh, eventWeatherLow: body.EventWeatherLow, eventWeatherSummary: body.EventWeatherSummary, eventPrecipProb: body.EventPrecipProb } })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleAddTeamClick(event){
+    if (this.state.teamAddClicked) {
+      this.setState({ teamAddClicked: false })
+    } else {
+    this.setState({ teamAddClicked: true })
+    }
+  }
+
+  handleChange(event){
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit(event){
+    event.preventDefault()
+    let formPayload = {
+      teamId: this.state.team,
+      eventInfo: this.props.eventInfo
+    }
+    fetch('/api/v1/team_events', {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}
+    })
+    .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+    .then(response => response.json())
+    .then(body => {
+      if(body.result) {
+        this.setState({ teamAddClicked: false, successMessage: "Added!" })
+      } else if (body.result == false) {
+        this.setState({ teamAddClicked: false, successMessage: "Already added" })
+      }
+    })
+     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   // Turns event date into object based on string source (external or internal API)
@@ -67,7 +119,46 @@ class EventTile extends Component {
   }
 
   render() {
+
     const { EventId, Distance, EventName, EventCity, EventState, EventAddress, EventDate, EventEndDate, EventUrl, Latitude, Longitude, RegOpenDate, RegCloseDate, EventTypes } = this.props.eventInfo
+
+    let teamAddDiv
+    let teamAddDropDown
+    if (this.props.activeUser.teams && this.props.activeUser.teams.length > 0 && !this.state.teamAddClicked) {
+      teamAddDiv = <div className="add-team-favorite">
+                    <a onClick={this.handleAddTeamClick}>
+                      Add to team
+                    </a>
+                  </div>
+    } else if (this.props.activeUser.teams && this.props.activeUser.teams.length > 0 && this.state.teamAddClicked) {
+      let optionItems = this.props.activeUser.teams.map((team) => {
+        return (
+          <option value={team.id}>{team.name}</option>
+        )
+      })
+      teamAddDropDown = <div className="add-team-favorite-dropdown">
+                          <form className="team-add-form" onSubmit={this.handleSubmit}>
+                            <select name='team' value={this.state.team || ''} onChange={this.handleChange}>
+                              <option value=''></option>
+                              {optionItems}
+                            </select>
+                            <span className="team-submit-buttons">
+                              <a onClick={this.handleAddTeamClick} className="cancel-team-submit-button">
+                                Cancel
+                              </a>
+                              <a onClick={this.handleSubmit} className="add-team-submit-button">
+                                Add
+                              </a>
+                            </span>
+                          </form>
+                        </div>
+    }
+    let successDiv
+    if (this.state.successMessage) {
+      successDiv = <div className="team-add-message">
+                    {this.state.successMessage}
+                  </div>
+    }
 
     let distanceDiv
     if (Distance && Distance != 0) {
@@ -119,7 +210,12 @@ class EventTile extends Component {
           <div className="event-detail event-types small-9 large-9">
             {types}
           </div>
-          {favoriteButton}
+          <span className="event-detail event-add-buttons small-3 large-3">
+            {favoriteButton}
+            {teamAddDiv}
+            {teamAddDropDown}
+            {successDiv}
+          </span>
         </span>
         <span className="event-header">
           <div className="event-detail event-name small-9 large-9">{EventName}</div><div className="event-detail event-date small-3 large-3">{eventDate}</div>

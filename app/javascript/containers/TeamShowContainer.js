@@ -45,6 +45,7 @@ class TeamShowContainer extends Component {
     let teamMembers
     let editTeam
     let teamName
+    let teamDescription
     let teamPhoto
     let captainId
     let upcomingEvents;
@@ -59,32 +60,42 @@ class TeamShowContainer extends Component {
       teamName = this.state.team.name
       teamPhoto = this.state.team.photo
       captainId = this.state.team.captain.id
+      teamDescription = this.state.team.description
 
       teamMembers = this.state.team.members.map((member) => {
         if (member.id == captainId) {
           return (
-            <div className="captain-detail">
-              <Link to={`/users/${member.username}`}>
-                {member.username}
-              </Link>
-              <div className="captain-label">
-                (captain)
-              </div>
+            <div className="captain-div">
+              <span className="captain-detail">
+                <Link to={`/users/${member.username}`}>
+                  <img src={`${member.profile_photo}`} className="membership-photo"/>
+                  {member.username}
+                </Link>
+                <span className="captain-label">
+                  CAPTAIN
+                </span>
+              </span>
             </div>
           )
         } else {
           return (
-            <div className="member-detail">
-              <Link to={`/users/${member.username}`}>
-                {member.username}
-              </Link>
-            </div>
+            <span className="member-detail">
+              <span className='nobr'>
+                <Link to={`/users/${member.username}`}>
+                  <img src={`${member.profile_photo}`} className="membership-photo"/>
+                  <span className="membership-name">
+                    {member.username}
+                  </span>
+                </Link>
+              </span>
+            </span>
           )
         }
       })
 
       if (this.state.team.events.length == 0) {
         upcomingEvents = <div className="no-results">No currently favorited upcoming events</div>
+        pastEvents = <div className="no-results">No currently favorited past events</div>
       } else {
         upcomingEvents = this.state.team.events.filter(function(bikeEvent) {
           if (bikeEvent["EventDate"] == null || new Date(bikeEvent["EventDate"]) <= new Date()) {
@@ -95,7 +106,7 @@ class TeamShowContainer extends Component {
           return (
             <EventTile
               key={bike_event.EventId}
-              activeUser={this.state.team.currentUser.id}
+              activeUser={this.state.team.currentUser}
               eventInfo={bike_event}
             />
           )
@@ -108,9 +119,9 @@ class TeamShowContainer extends Component {
         }).map((bike_event) => {
           return (
             <EventTile
-            key={bike_event.EventId}
-            activeUser={this.state.team.currentUser.id}
-            eventInfo={bike_event}
+              key={bike_event.EventId}
+              activeUser={this.state.team.currentUser}
+              eventInfo={bike_event}
             />
           )
         })
@@ -124,33 +135,41 @@ class TeamShowContainer extends Component {
     return (
       <div>
         <div id="team-info">
-          <h2 className="names-in-rounded-box page-header team-name-header">{teamName}</h2>
+          <h2 className="names-in-rounded-box page-header team-name-header">Team {teamName}</h2>
           <div className="large-12 medium-12 small-12">
           <div id="edit-team-link">
           {editTeam}
           </div>
           </div>
+          <div id="team-join-button">
+          {joinButton}
+          </div>
           <div className="team-profile-photo">
             <img src={teamPhoto}/>
           </div>
-          <div id="team-join-button">
-            {joinButton}
+          <div className="team-show-description">
+            <div className="description-label">
+              Description:
+            </div>
+            {teamDescription}
           </div>
-          <div className="team-members">
+          <div className="team-members large-12 medium-12 small-12">
             <div className="members-label">
               Members:
             </div>
-            {teamMembers}
+            <div className="members-list large-12 medium-12 small-12">
+              {teamMembers}
+            </div>
           </div>
         </div>
         <div id="team-events">
-        <h2 className="names-in-rounded-box page-header">Upcoming Team Member Events</h2>
+        <h2 className="names-in-rounded-box page-header">Upcoming Team Events</h2>
           <div className="large-12 medium-12 small-12">
             <div className="row events-tiles">
               {upcomingEvents}
             </div>
           </div>
-          <h2 className="names-in-rounded-box page-header">Past Team Member Events</h2>
+          <h2 className="names-in-rounded-box page-header">Past Team Events</h2>
           <div className="large-12 medium-12 small-12">
             <div className="row events-tiles">
               {pastEvents}

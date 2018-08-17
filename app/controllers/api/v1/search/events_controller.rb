@@ -64,7 +64,7 @@ class Api::V1::Search::EventsController < ApplicationController
 
     # Checks if user is signed in
     if current_user
-      authenticated_user = current_user.id
+      authenticated_user = { username: current_user.username, id: current_user.id, profile_photo: current_user.profile_photo, teams: current_user.teams }
     else
       authenticated_user = nil
     end

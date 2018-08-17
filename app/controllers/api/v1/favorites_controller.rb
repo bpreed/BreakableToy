@@ -13,13 +13,7 @@ class Api::V1::FavoritesController < ApplicationController
       Favorite.find(params[:favoriteId]).destroy
       render json: { activeUser: params[:activeUser], favoriteRecord: nil, favorited: false }
     else
-    # Create favorite join
-      # result = Favorite.where(event_id: params[:eventInfo][:EventId], user_id: params[:activeUser])
-      # if result.length == 0
-        save_favorite(params)
-      # else
-      #   render json: { activeUser: params[:activeUser], favoriteRecord: result[0], favorited: true }
-      # end
+      save_favorite(params)
     end
   end
 
@@ -50,7 +44,7 @@ class Api::V1::FavoritesController < ApplicationController
       new_event.types = params[:eventInfo][:EventTypes]
 
       if new_event.save
-        new_fav = Favorite.new(event: new_event, user_id: params[:activeUser])
+        new_fav = Favorite.new(event: new_event, user_id: params[:activeUser][:id])
         if new_fav.save
           render json: { activeUser: params[:activeUser], favoriteRecord: new_fav, favorited: true }
         else
@@ -61,7 +55,7 @@ class Api::V1::FavoritesController < ApplicationController
       end
     else
       # If event does exist, just create favorite record
-      new_fav = Favorite.new(event: Event.find_by(bike_reg_id: params[:eventInfo][:EventId]), user_id: params[:activeUser])
+      new_fav = Favorite.new(event: Event.find_by(bike_reg_id: params[:eventInfo][:EventId]), user_id: params[:activeUser][:id])
       if new_fav.save
         render json: { activeUser: params[:activeUser], favoriteRecord: new_fav, favorited: true }
       else

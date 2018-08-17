@@ -11,7 +11,7 @@ class TeamShowSerializer < ActiveModel::Serializer
     members = []
 
     object.users.each do |member|
-      mem = { username: member.username, id: member.id }
+      mem = { username: member.username, id: member.id, profile_photo: member.profile_photo.url }
       members << mem
     end
 

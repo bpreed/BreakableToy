@@ -11,7 +11,7 @@ class Api::V1::EventsController < ApplicationController
     # Else, check for Favorite record and return if found
     favorited = nil
     if params[:activeUser]
-      user = User.find(params[:activeUser])
+      user = User.find(params[:activeUser][:id])
       event = Event.find_by(bike_reg_id: params[:eventInfo][:EventId])
       if user != nil && event != nil
         if Favorite.where(user: user, event: event).length > 0

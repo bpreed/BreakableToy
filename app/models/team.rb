@@ -8,8 +8,9 @@ class Team < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
-  has_many :events, through: :users
-
   belongs_to :captain, class_name: "User"
+
+  has_many :team_events
+  has_many :events, through: :team_events
 
 end
