@@ -17,7 +17,9 @@ class App extends Component {
       var flashContainerId = 'flash-messages';
 
       function removeFlashMessages() {
-        $('#' + flashContainerId).remove();
+        if ($('#' + flashContainerId)[0].innerText != "") {
+          $('#' + flashContainerId).remove();
+        }
       }
 
       setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
