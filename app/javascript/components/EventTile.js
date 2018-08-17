@@ -125,7 +125,6 @@ class EventTile extends Component {
     let teamAddDiv
     let teamAddDropDown
     if (this.props.activeUser && this.props.activeUser.teams && this.props.activeUser.teams.length > 0 && !this.state.teamAddClicked) {
-      debugger
       teamAddDiv = <div className="add-team-favorite">
                     <a onClick={this.handleAddTeamClick}>
                       Add to team
