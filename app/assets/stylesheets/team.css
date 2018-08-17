@@ -227,46 +227,30 @@
 
 .team-tile-membership-photo{
   max-width: 2rem;
+  border-radius: 50%;
 }
 
 .team-tile-membership-name{
   font-size: 1.75rem;
 }
 
-#team-name-header-div{
-}
-
 .team-name-header-div{
   font-size: 1.5rem;
   margin-top: auto;
   margin-bottom: auto;
-}
-
-#team-photo-header-div{
-  /* width: 10rem; */
-}
-
-#team-description-header-div{
-  /* width: 20rem; */
+  padding-right: .5rem;
 }
 
 .team-description-header-div{
   margin-top: auto;
   margin-bottom: auto;
   font-size: 1.1rem;
-}
-
-#team-captain-header-div{
-  /* width: 5rem; */
+  padding-right: .5rem
 }
 
 .team-captain-header-div{
   margin-top: auto;
   margin-bottom: auto;
-}
-
-#team-join-header-div{
-  /* width: 10rem; */
 }
 
 .team-join-header-div{
@@ -296,5 +280,8 @@
   margin-bottom: .5rem;
 }
 
-#team-index-header{
+.team-profile-photo-image{
+  border: 3px;
+  border-color: #763276;
+  border-style: solid;
 }

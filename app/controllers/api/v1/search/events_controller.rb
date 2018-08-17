@@ -63,10 +63,9 @@ class Api::V1::Search::EventsController < ApplicationController
     end
 
     # Checks if user is signed in
+    authenticated_user = nil
     if current_user
       authenticated_user = { username: current_user.username, id: current_user.id, profile_photo: current_user.profile_photo, teams: current_user.teams }
-    else
-      authenticated_user = nil
     end
     # Returns found events and results of user check
     render json: { events: event_results, authenticated_user: authenticated_user }
