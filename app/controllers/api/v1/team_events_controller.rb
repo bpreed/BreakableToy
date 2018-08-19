@@ -7,11 +7,11 @@ class Api::V1::TeamEventsController < ApplicationController
 
   private
 
-    def date_string_to_obj(date)
-      short = date[6, 18]
-      date_obj = Time.at(short.to_i/1000)
-      return date_obj
-    end
+  def date_string_to_obj(date)
+    short = date[6, 18]
+    date_obj = Time.at(short.to_i/1000)
+    return date_obj
+  end
 
   def process_team_event(params)
     event = Event.find_by(bike_reg_id: params[:eventInfo][:EventId])

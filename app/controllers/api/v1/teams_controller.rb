@@ -12,13 +12,6 @@ class Api::V1::TeamsController < ApplicationController
     render json: team, serializer: TeamShowSerializer
   end
 
-  def new
-    if current_user
-      @user = User.find(current_user.id)
-      @team = Team.new
-    end
-  end
-
   def create
     membership = nil
     team = Team.find(params[:teamInfo][:id])
