@@ -1,10 +1,6 @@
 class Api::V1::EventsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
-  def index
-    render json: Event.all
-  end
-
   def create
     # Checks for logged in user and event already in DB
     # If either is missing, event was never favorited by user; return nil for favorited

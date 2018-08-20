@@ -4,12 +4,16 @@ class Api::V1::Events::EventsController < ApplicationController
   def create
     event = params
 
-    geocode_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{event["EventAddress"].gsub(' ', '+')},#{event["EventCity"].gsub(' ', '+')},#{event["EventState"]}&key=#{ENV["GEOCODE_API"]}"
-    geo_data = JSON.parse(open(geocode_url).read)
+    if event["event"] && event["event"]["latitude"]
+      event["EventLat"] = event["event"]["latitude"]
+      event["EventLng"] = event["event"]["longitude"]
+    else
+      geocode_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{event["EventAddress"].gsub(' ', '+')},#{event["EventCity"].gsub(' ', '+')},#{event["EventState"]}&key=#{ENV["GEOCODE_API"]}"
+      geo_data = JSON.parse(open(geocode_url).read)
 
-    event["EventLat"] = geo_data["results"][0]["geometry"]["location"]["lat"]
-    event["EventLng"] = geo_data["results"][0]["geometry"]["location"]["lng"]
-
+      event["EventLat"] = geo_data["results"][0]["geometry"]["location"]["lat"]
+      event["EventLng"] = geo_data["results"][0]["geometry"]["location"]["lng"]
+    end
 
     if event["EventDate"][0..5] == "/Date("
       date_trim = event["EventDate"][6..15]
@@ -30,5 +34,4 @@ class Api::V1::Events::EventsController < ApplicationController
     # Returns found events and results of user check
     render json: event
   end
-
 end

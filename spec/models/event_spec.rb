@@ -9,12 +9,12 @@ RSpec.describe Event do
     url: "https://www.google.com",
     latitude: "1",
     longitude: "2",
-    date: "2018-08-19T04:15:00.000Z",
-    reg_open: "2018-06-02T04:01:00.000Z",
-    reg_close: "2018-08-19T03:59:00.000Z",
+    date: "Sat, 11 Aug 2018 04:00:00 UTC +00:00",
+    reg_open: "Thu, 21 Jun 2018 04:15:00 UTC +00:00",
+    reg_close: "Fri, 10 Aug 2018 21:00:00 UTC +00:00",
     bike_reg_id: 123,
     id: 2
-  ) }
+  )}
 
   describe 'validations' do
     describe 'name' do
@@ -57,6 +57,22 @@ RSpec.describe Event do
       end
     end
 
+    describe 'reg_open' do
+      it 'must be present' do
+        expect(event).to be_valid
+        event.reg_open = nil
+        expect(event).to_not be_valid
+      end
+    end
+
+    describe 'reg_close' do
+      it 'must be present' do
+        expect(event).to be_valid
+        event.reg_close = nil
+        expect(event).to_not be_valid
+      end
+    end
+
     describe 'bike_reg_id' do
       it 'must be present' do
         expect(event).to be_valid
@@ -69,6 +85,22 @@ RSpec.describe Event do
       it 'must be present' do
         expect(event).to be_valid
         event.url = nil
+        expect(event).to_not be_valid
+      end
+    end
+
+    describe 'latitude' do
+      it 'must be present' do
+        expect(event).to be_valid
+        event.latitude = nil
+        expect(event).to_not be_valid
+      end
+    end
+
+    describe 'longitude' do
+      it 'must be present' do
+        expect(event).to be_valid
+        event.longitude = nil
         expect(event).to_not be_valid
       end
     end

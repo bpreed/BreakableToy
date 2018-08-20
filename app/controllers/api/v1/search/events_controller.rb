@@ -15,6 +15,7 @@ class Api::V1::Search::EventsController < ApplicationController
         distance_measure = 200
       end
     end
+
     search_string = BikeRegResult.new(
                       states: params[:states],
                       region: params[:region],
@@ -26,6 +27,7 @@ class Api::V1::Search::EventsController < ApplicationController
                     )
     # Makes outside API call using search parameters
     events = search_string.matching_events
+
     # Fetch response returns two objects, ResultCount and MatchingEvents
     event_results = []
     events_count = events["ResultCount"]
@@ -44,7 +46,7 @@ class Api::V1::Search::EventsController < ApplicationController
       end
     end
 
-    # If fewer than 30 events in event_results, fetches additional events if available
+    # If fewer than 20 events in event_results, fetches additional events until 20, if available
     while (events_count > ((events_page * 100) + 99)) && (event_results.length < 20)
       events_page += 1
       new_search_string = BikeRegResult.new(
