@@ -8,6 +8,7 @@ import EventSearchTile from '../../app/javascript/components/EventSearchTile'
 describe('EventsIndexContainerSpec', () => {
   let wrapper;
   let events;
+  let authenticated_user;
 
   beforeEach(() => {
     events = [
@@ -36,9 +37,19 @@ describe('EventsIndexContainerSpec', () => {
         RegOpenDate: "/Date(1512281700000-0500)/"
       }
     ]
+
+    authenticated_user = {
+      username: "ben",
+      email: "ben@ben.com",
+      id: 1,
+      role: "member",
+      profile_photo: "imgur.com/images/1.gif",
+      teams: []
+    }
+
     fetchMock.post('/api/v1/search/events', {
       status: 200,
-      body: events
+      body: { events, authenticated_user }
     });
     wrapper = mount(<EventsIndexContainer />)
   });
