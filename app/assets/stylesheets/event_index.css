@@ -191,3 +191,8 @@ iframe {
 .event-weather-details {
   font-size: .9rem;
 }
+
+.ds-attribution {
+  font-size: .7rem;
+  font-style: italic;
+}

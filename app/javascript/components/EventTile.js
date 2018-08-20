@@ -236,6 +236,9 @@ class EventTile extends Component {
               </div>
               <div className="event-detail event-weather-details">
                 High: {this.state.weather.eventWeatherHigh}F / Low: {this.state.weather.eventWeatherLow}F / Chance of precipitation: {this.state.weather.eventPrecipProb}%
+                <div className="ds-attribution">
+                  <a href="https://darksky.net/poweredby/" target="_blank">Forecast powered by Dark Sky</a>
+                </div>
               </div>
             </div>
             <div className="event-detail event-url"><a href={`${EventUrl}`} target="blank">
