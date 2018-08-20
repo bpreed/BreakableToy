@@ -22,9 +22,7 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
 
     it "should delete a favorite record when a user unfavorites an event" do
       user1 = FactoryBot.create(:user)
-
       event1 = FactoryBot.create(:event)
-
       favorite1 = Favorite.create(user: user1, event: event1)
 
       get :create, params: { favoriteId: favorite1.id, eventInfo: { EventId: event1.id.to_i, EventTypes: [] }, activeUser: { id: user1.id.to_i } }
